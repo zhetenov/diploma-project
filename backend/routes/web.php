@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,4 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/admin/{vue}', function () {
+    if (Auth::check()) {
+        return view('admin');
+    }
+    return redirect('/login');
+})->where("any", ".*");;
+
 Route::get('/', 'IndexController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
