@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5cb6e369ed424d05439b41685b0d3441",
+    "content-hash": "c1ae3b5e0f096dcbad495a5ee24a35a2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3447,6 +3447,46 @@
                 "php"
             ],
             "time": "2020-03-06T02:47:42+00:00"
+        },
+        {
+            "name": "zhetenov/repository",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zhetenov/repository.git",
+                "reference": "e2e0b2926de6af6b6aabac33799a662c7cae3003"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zhetenov/repository/zipball/e2e0b2926de6af6b6aabac33799a662c7cae3003",
+                "reference": "e2e0b2926de6af6b6aabac33799a662c7cae3003",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Zhetenov\\Repository\\RepositoryServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zhetenov\\Repository\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Zhetenov Ralan",
+                    "email": "rollwho@gmail.com"
+                }
+            ],
+            "description": "Easy way to create repository",
+            "time": "2020-01-06T07:04:28+00:00"
         }
     ],
     "packages-dev": [
@@ -5498,7 +5538,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "zhetenov/repository": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
