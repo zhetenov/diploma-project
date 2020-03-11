@@ -25,14 +25,8 @@
                      with font-awesome or any other icon font library -->
 
                 <li class="nav-item">
-                    <router-link tag="a" to="/dashboard" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
-                    </router-link>
-                </li>
-                <li class="nav-item">
                     <router-link tag="a" to="/users" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>Users</p>
                     </router-link>
                 </li>

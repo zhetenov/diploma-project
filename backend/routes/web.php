@@ -19,7 +19,7 @@ Route::get('/admin/{vue}', function () {
         return view('admin');
     }
     return redirect('/login');
-})->where("any", ".*");;
+})->where("any", ".*");
 
 Route::get('/', 'IndexController@index');
 
