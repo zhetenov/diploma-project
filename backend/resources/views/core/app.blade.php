@@ -17,10 +17,10 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
-<body class="hold-transition sidebar-mini dark">
+<body class="layout-top-nav" style="height: auto; min-height: 100%;">
 
     <!-- wrapper -->
-    <div class="wrapper" id="app">
+    <div class="wrapper" id="app" style="height: auto; min-height: 100%;">
         @yield('content')
     </div>
     <!-- ./wrapper -->

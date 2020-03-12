@@ -46,7 +46,7 @@
 
                 <div class="row">
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">All unique users</h3>
@@ -63,17 +63,25 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0" style="height: 300px;">
-                                <table class="table table-hover">
+                                <table class="table table-hover" style="text-align:center;">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>#</th>
+                                        <th>USER ID</th>
                                         <th>User</th>
                                         <th>Email</th>
+                                        <th>Last order</th>
+                                        <th>See statistics</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr >
-                                        <td></td>
+                                    <tr v-for="(user, index) in users">
+                                        <td>{{ index + 1 }}</td>
+                                        <td>{{ user.client_id}}</td>
+                                        <td>{{ user.name }}</td>
+                                        <td>{{ user.email }}</td>
+                                        <td>2018.02.12</td>
+                                        <td><a href=""><i style="color:green;" class="fab fa-shopify fa-lg"></i></a></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -81,51 +89,6 @@
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
-                    </div>
-
-                    <div class="col-lg-6">
-
-                        <div class="card card-info">
-                            <div class="card-header">
-                                <h3 class="card-title">New User Form</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <!-- form start -->
-                            <form class="form-horizontal" @submit.prevent="">
-                                <div class="card-body" style="height: 239px;">
-                                    <div class="form-group row">
-                                        <label for="name" class="col-sm-2 col-form-label">Name</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="name" name="name" required autocomplete="name" autofocus placeholder="Name">
-                                            <span class="invalid-feedback d-block" role="alert" ></span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputEmail3" placeholder="Email" required>
-                                                <span class="invalid-feedback d-block" role="alert"></span>
-                                            </div>
-
-                                        </div>
-
-                                    <div class="form-group row">
-
-                                        <label for="password" class="col-sm-2 col-form-label">Password</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="password" placeholder="Password" required>
-                                            <span class="invalid-feedback d-block" role="alert"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.card-body -->
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-info">Add User</button>
-                                </div>
-                                <!-- /.card-footer -->
-                            </form>
-                        </div>
-
                     </div>
 
                 </div>
@@ -141,6 +104,7 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex'
 
     export default {
         data() {
@@ -148,8 +112,13 @@
 
             }
         },
+        computed: {
+            ...mapGetters({
+                users: 'getUsers',
+            })
+        },
         created() {
-
+            this.$store.dispatch('fetchUsers')
         },
         methods: {
 
