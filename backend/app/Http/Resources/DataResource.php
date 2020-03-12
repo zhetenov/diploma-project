@@ -18,6 +18,8 @@ class DataResource extends Resource
         $data = [
             'id' => $this->id,
             'name' => $this->name,
+            'email' => $this->name,
+            'client_id'=>$this->client_id
         ];
 
         return $data;
