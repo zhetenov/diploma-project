@@ -6,11 +6,11 @@ Targeted mailing and standard tools to analyze data are additional services we p
 
 ### Responsibilities
 
-- **Ralan Zhetenov** - Backend.
-- **Daryn Kuralsynov** - Project Manager, Documentation, PR.
-- **Nurlan Tukenbayev** - Frontend, teamlead.
+- **Ralan Zhetenov**        - Backend.
+- **Daryn Kuralsynov**      - Project Manager, Documentation, PR.
+- **Nurlan Tukenbayev**     - Frontend, teamlead.
 - **Nazhmeddin Babakhanov** - Architect of algorithm.
-- **Assel Tolebayeva** - Main designer.
+- **Assel Tolebayeva**      - Main designer.
 
 ### Functional requirements
 
