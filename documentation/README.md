@@ -10,7 +10,7 @@ Targeted mailing and standard tools to analyze data are additional services we p
 - **Daryn Kuralsynov** - Project Manager, Documentation, PR.
 - **Nurlan Tukenbayev** - Frontend, teamlead.
 - **Nazhmeddin Babakhanov** - Architect of algorithm.
-- **Assel Tolebayev** - Main designer.
+- **Assel Tolebayeva** - Main designer.
 
 ### Functional requirements
 
