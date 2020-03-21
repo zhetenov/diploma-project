@@ -14,15 +14,19 @@ use \Illuminate\Support\Facades\Auth;
 |
 */
 
+Auth::routes();
 Route::get('/admin/{vue}', function () {
-    if (Auth::check()) {
+    if (auth()->check()) {
         return view('admin');
     }
     return redirect('/login');
-})->where("any", ".*");
+})->where("vue", "[\/\w\.-]*");
 
 Route::get('/', 'IndexController@index');
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix'=>'api'], function(){
+    Route::get('/users', 'Api\DataController@getUsers');
+});

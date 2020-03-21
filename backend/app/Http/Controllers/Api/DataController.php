@@ -13,6 +13,7 @@ class DataController extends Controller
     public function __construct(DataRepositoryInterface $user)
     {
         parent::__construct();
+        $this->middleware('auth');
         $this->userRepository = $user;
     }
 
@@ -21,7 +22,7 @@ class DataController extends Controller
      */
     public function getUsers()
     {
-        $data = $this->userRepository->getAll();
+        $data = $this->userRepository->getUniqueUsers();
         return DataResource::collection($data);
     }
 }
