@@ -17,10 +17,14 @@ const mutations = {
 }
 
 const actions = {
-    fetchUsers({commit}) {
-        return axios.get('/api/users')
+    fetchUsers({commit}, payload) {
+        return axios.get('/api/users', {
+            params: {
+                page: payload
+            }
+        })
             .then((response) => {
-                commit('SET_USERS', response.data.data)
+                commit('SET_USERS', response.data)
                 Vue.$toast.open({
                     message: 'Data received successfully',
                     type: 'success',

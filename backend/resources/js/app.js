@@ -5,16 +5,15 @@ import store from './store'
 import VueRouter from "vue-router";
 import router from './router';
 import VueToast from 'vue-toast-notification';
-// Import any of available themes
 import 'vue-toast-notification/dist/theme-default.css';
-//import './vue-toast-notification/dist/dist/theme-sugar.css';
+import Paginate from 'vuejs-paginate'
 
 import './modules/users'
 
 window.Vue = Vue;
 Vue.use(VueRouter);
 Vue.use(VueToast);
-
+Vue.component('paginate', Paginate)
 
 // Close all opened toast immediately
 Vue.$toast.clear();

@@ -16,10 +16,10 @@ class DataResource extends Resource
     public function toArray($request)
     {
         $data = [
-            'id' => $this->id,
-            'name' => $this->name,
-            'email' => $this->name,
-            'client_id'=>$this->client_id
+            'id'        => $this->id,
+            'name'      => $this->name,
+            'email'     => $this->email,
+            'client_id' => $this->client_id
         ];
 
         return $data;

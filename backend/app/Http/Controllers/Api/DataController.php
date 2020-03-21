@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helper\Pagination;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DataResource;
 use App\Repositories\Data\DataRepositoryInterface;
+use Illuminate\Http\Request;
 
 class DataController extends Controller
 {
@@ -18,11 +20,14 @@ class DataController extends Controller
     }
 
     /**
+     * @param Request $request
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getUsers()
+    public function getUsers(Request $request)
     {
-        $data = $this->userRepository->getUniqueUsers();
-        return DataResource::collection($data);
+        $data  = $this->userRepository->getUniqueUsers();
+        $items = Pagination::paginate($data, 15, $request->get('page'));
+
+        return DataResource::collection($items);
     }
 }

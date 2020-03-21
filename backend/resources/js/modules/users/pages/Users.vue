@@ -52,13 +52,16 @@
                                 <h3 class="card-title">All unique users</h3>
 
                                 <div class="card-tools">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                                        </div>
-                                    </div>
+                                    <paginate
+                                            :page-count="users.meta.last_page"
+                                            :click-handler="fetchUsers"
+                                            :prev-text="'Prev'"
+                                            :next-text="'Next'"
+                                            :container-class="'pagination'"
+                                            :page-class="'page-link'"
+                                            :break-view-class="'item'"
+                                    >
+                                    </paginate>
                                 </div>
                             </div>
                             <!-- /.card-header -->
@@ -68,19 +71,17 @@
                                     <tr>
                                         <th>#</th>
                                         <th>USER ID</th>
-                                        <th>User</th>
+                                        <th>Name</th>
                                         <th>Email</th>
-                                        <th>Last order</th>
                                         <th>See statistics</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="(user, index) in users">
+                                    <tr v-for="(user, index) in users.data">
                                         <td>{{ index + 1 }}</td>
                                         <td>{{ user.client_id}}</td>
                                         <td>{{ user.name }}</td>
                                         <td>{{ user.email }}</td>
-                                        <td>2018.02.12</td>
                                         <td><a href=""><i style="color:green;" class="fab fa-shopify fa-lg"></i></a></td>
                                     </tr>
                                     </tbody>
@@ -118,10 +119,27 @@
             })
         },
         created() {
-            this.$store.dispatch('fetchUsers')
+            this.fetchUsers()
         },
         methods: {
-
+            fetchUsers(page = 1) {
+                console.log(page);
+                this.$store.dispatch('fetchUsers', page)
+            }
         }
     }
 </script>
+
+<style>
+    .pagination {
+        display: flex;
+        padding-left: 0;
+        list-style: none;
+    }
+    .page-link {
+        position: relative;
+        color: #0d6efd;
+        background-color: #fff;
+    }
+
+</style>
