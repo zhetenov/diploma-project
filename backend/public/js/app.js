@@ -2064,7 +2064,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -6668,7 +6667,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.pagination {\n    display: flex;\n    padding-left: 0;\n    list-style: none;\n}\n.page-link {\n    position: relative;\n    color: #0d6efd;\n    background-color: #fff;\n}\n\n", ""]);
+exports.push([module.i, "\n.pagination1 {\n    display: flex;\n    list-style:none;\n}\n.page-link1 {\n    margin: 0px 5px;\n}\n", ""]);
 
 // exports
 
@@ -38234,9 +38233,9 @@ var render = function() {
                         "click-handler": _vm.fetchUsers,
                         "prev-text": "Prev",
                         "next-text": "Next",
-                        "container-class": "pagination",
-                        "page-class": "page-link",
-                        "break-view-class": "item"
+                        "container-class": "pagination1",
+                        "page-class": "page-link1",
+                        "break-view-class": "item1"
                       }
                     })
                   ],

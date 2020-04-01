@@ -50,16 +50,15 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">All unique users</h3>
-
                                 <div class="card-tools">
                                     <paginate
                                             :page-count="users.meta.last_page"
                                             :click-handler="fetchUsers"
                                             :prev-text="'Prev'"
                                             :next-text="'Next'"
-                                            :container-class="'pagination'"
-                                            :page-class="'page-link'"
-                                            :break-view-class="'item'"
+                                            :container-class="'pagination1'"
+                                            :page-class="'page-link1'"
+                                            :break-view-class="'item1'"
                                     >
                                     </paginate>
                                 </div>
@@ -131,15 +130,11 @@
 </script>
 
 <style>
-    .pagination {
+    .pagination1 {
         display: flex;
-        padding-left: 0;
-        list-style: none;
+        list-style:none;
     }
-    .page-link {
-        position: relative;
-        color: #0d6efd;
-        background-color: #fff;
+    .page-link1 {
+        margin: 0px 5px;
     }
-
 </style>
