@@ -8,7 +8,7 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <router-link tag="a" to="/users" class="nav-link {{ (request()->is('admin/users')) ? 'active' : '' }}">
+                    <router-link tag="a" to="/users" class="nav-link" active-class="active">
                         Users
                     </router-link>
                 </li>
@@ -19,7 +19,10 @@
                     <a href="index3.html" class="nav-link">RFM Analyze</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Mailing</a>
+                    <router-link tag="a" to="/mailing" class="nav-link" active-class="active"
+                    >
+                        Mailing
+                    </router-link>
                 </li>
             </ul>
         </div>
