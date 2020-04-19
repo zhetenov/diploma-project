@@ -9,6 +9,7 @@ import 'vue-toast-notification/dist/theme-default.css';
 import Paginate from 'vuejs-paginate'
 
 import './modules/users'
+import './modules/mailing'
 
 window.Vue = Vue;
 Vue.use(VueRouter);
