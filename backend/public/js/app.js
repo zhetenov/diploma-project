@@ -2054,7 +2054,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     getEmails: function getEmails() {
-      return this.formData.emails.slice(1, 6);
+      return this.formData.emails.slice(0, 6);
     }
   },
   methods: {
@@ -2106,6 +2106,138 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/modules/users/components/CsvParser.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/modules/users/components/CsvParser.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "CsvParser",
+  data: function data() {
+    return {
+      channel_name: '',
+      channel_fields: [],
+      channel_entries: [],
+      parse_header: [],
+      parse_csv: [],
+      sortOrders: {},
+      sortKey: ''
+    };
+  },
+  filters: {
+    capitalize: function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+  },
+  computed: {
+    isFileExists: function isFileExists() {
+      return this.parse_csv.length !== 0;
+    }
+  },
+  methods: {
+    sortBy: function sortBy(key) {
+      var vm = this;
+      vm.sortKey = key;
+      vm.sortOrders[key] = vm.sortOrders[key] * -1;
+    },
+    csvJSON: function csvJSON(csv) {
+      var vm = this;
+      var lines = csv.split("\n");
+      var result = [];
+      var headers = lines[0].split(",");
+      vm.parse_header = lines[0].split(",");
+      lines[0].split(",").forEach(function (key) {
+        vm.sortOrders[key] = 1;
+      });
+      lines.map(function (line, indexLine) {
+        if (indexLine < 1) return; // Jump header line
+
+        var obj = {};
+        var currentline = line.split(",");
+        headers.map(function (header, indexHeader) {
+          obj[header] = currentline[indexHeader];
+        });
+        result.push(obj);
+      });
+      result.pop(); // remove the last item because undefined values
+
+      return result; // JavaScript object
+    },
+    loadCSV: function loadCSV(e) {
+      var vm = this;
+
+      if (window.FileReader) {
+        var reader = new FileReader();
+        reader.readAsText(e.target.files[0]); // Handle errors load
+
+        reader.onload = function (event) {
+          var csv = event.target.result;
+          vm.parse_csv = vm.csvJSON(csv);
+        };
+
+        reader.onerror = function (evt) {
+          if (evt.target.error.name == "NotReadableError") {
+            alert("Canno't read file !");
+          }
+        };
+      } else {
+        alert('FileReader are not supported in this browser.');
+      }
+    },
+    uploadData: function uploadData() {
+      var _this = this;
+
+      this.$store.dispatch('uploadData', {
+        csv: this.parse_csv
+      }).then(function (isSuccess) {
+        if (isSuccess) {
+          _this.parse_csv = [];
+          _this.parse_header = [];
+
+          _this.$store.dispatch('fetchUsers', 1);
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/modules/users/pages/Users.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/modules/users/pages/Users.vue?vue&type=script&lang=js& ***!
@@ -2116,6 +2248,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_CsvParser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/CsvParser */ "./resources/js/modules/users/components/CsvParser.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2223,13 +2356,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    CsvParser: _components_CsvParser__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   data: function data() {
     return {};
   },
@@ -38590,6 +38722,114 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/modules/users/components/CsvParser.vue?vue&type=template&id=d9c5c6ce&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/modules/users/components/CsvParser.vue?vue&type=template&id=d9c5c6ce&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "csv_file" } }, [
+        _vm._v("CSV file to import")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [
+        _c("input", {
+          attrs: { type: "file", id: "csv_file", name: "csv_file" },
+          on: {
+            change: function($event) {
+              return _vm.loadCSV($event)
+            }
+          }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-sm-offset-3 col-sm-9" }, [
+      _vm.isFileExists
+        ? _c(
+            "button",
+            {
+              staticClass: "btn btn-success",
+              attrs: { href: "#" },
+              on: { click: _vm.uploadData }
+            },
+            [_vm._v("Upload")]
+          )
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _vm.parse_csv
+      ? _c(
+          "table",
+          [
+            _c("thead", [
+              _c(
+                "tr",
+                _vm._l(_vm.parse_header, function(key) {
+                  return _c(
+                    "th",
+                    {
+                      class: { active: _vm.sortKey == key },
+                      on: {
+                        click: function($event) {
+                          return _vm.sortBy(key)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(_vm._f("capitalize")(key)) +
+                          "\n                    "
+                      ),
+                      _c("span", {
+                        staticClass: "arrow",
+                        class: _vm.sortOrders[key] > 0 ? "asc" : "dsc"
+                      })
+                    ]
+                  )
+                }),
+                0
+              )
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.parse_csv, function(csv) {
+              return _c(
+                "tr",
+                _vm._l(_vm.parse_header, function(key) {
+                  return _c("td", [
+                    _vm._v(
+                      "\n                " + _vm._s(csv[key]) + "\n            "
+                    )
+                  ])
+                }),
+                0
+              )
+            })
+          ],
+          2
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/modules/users/pages/Users.vue?vue&type=template&id=9c23bb80&":
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/modules/users/pages/Users.vue?vue&type=template&id=9c23bb80& ***!
@@ -38610,7 +38850,15 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "content" }, [
       _c("div", { staticClass: "container-fluid" }, [
-        _vm._m(1),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [_c("CsvParser")], 1)
+            ])
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-lg-12" }, [
@@ -38715,28 +38963,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _c("h3", { staticClass: "card-title" }, [_vm._v("Upload data")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "exampleInputFile" } }, [
-                _vm._v("File input")
-              ]),
-              _vm._v(" "),
-              _c("input", { attrs: { type: "file", id: "exampleInputFile" } }),
-              _vm._v(" "),
-              _c("p", { staticClass: "help-block" }, [
-                _vm._v("Only csv, txt format")
-              ])
-            ])
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Upload data")])
     ])
   },
   function() {
@@ -55338,6 +55566,75 @@ _store__WEBPACK_IMPORTED_MODULE_0__["default"].registerModule('mailing', {
 
 /***/ }),
 
+/***/ "./resources/js/modules/users/components/CsvParser.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/modules/users/components/CsvParser.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CsvParser_vue_vue_type_template_id_d9c5c6ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CsvParser.vue?vue&type=template&id=d9c5c6ce&scoped=true& */ "./resources/js/modules/users/components/CsvParser.vue?vue&type=template&id=d9c5c6ce&scoped=true&");
+/* harmony import */ var _CsvParser_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CsvParser.vue?vue&type=script&lang=js& */ "./resources/js/modules/users/components/CsvParser.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CsvParser_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CsvParser_vue_vue_type_template_id_d9c5c6ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CsvParser_vue_vue_type_template_id_d9c5c6ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "d9c5c6ce",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/modules/users/components/CsvParser.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/modules/users/components/CsvParser.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/modules/users/components/CsvParser.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CsvParser_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CsvParser.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/modules/users/components/CsvParser.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CsvParser_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/modules/users/components/CsvParser.vue?vue&type=template&id=d9c5c6ce&scoped=true&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/modules/users/components/CsvParser.vue?vue&type=template&id=d9c5c6ce&scoped=true& ***!
+  \********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CsvParser_vue_vue_type_template_id_d9c5c6ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CsvParser.vue?vue&type=template&id=d9c5c6ce&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/modules/users/components/CsvParser.vue?vue&type=template&id=d9c5c6ce&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CsvParser_vue_vue_type_template_id_d9c5c6ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CsvParser_vue_vue_type_template_id_d9c5c6ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/modules/users/index.js":
 /*!*********************************************!*\
   !*** ./resources/js/modules/users/index.js ***!
@@ -55510,6 +55807,26 @@ var actions = {
         position: 'top-right',
         duration: 5000
       });
+    });
+  },
+  uploadData: function uploadData(_ref2, payload) {
+    var commit = _ref2.commit;
+    return axios.post('/api/upload/data', payload).then(function (response) {
+      Vue.$toast.open({
+        message: 'Data uploaded successfully',
+        type: 'success',
+        position: 'top-right',
+        duration: 5000
+      });
+      return true;
+    })["catch"](function (error) {
+      Vue.$toast.open({
+        message: error,
+        type: 'error',
+        position: 'top-right',
+        duration: 5000
+      });
+      return false;
     });
   }
 };
