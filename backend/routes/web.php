@@ -27,7 +27,9 @@ Route::get('/', 'IndexController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 Route::group(['prefix'=>'api'], function(){
     Route::get('/users', 'Api\DataController@getUsers');
     Route::post('mailing/send', 'Api\EmailController@sendEmail');
+    Route::post('/upload/data', 'Api\DataController@uploadData');
 });

@@ -31,12 +31,7 @@
                            </div>
                            <!-- /.card-header -->
                            <div class="card-body">
-                               <div class="form-group">
-                                   <label for="exampleInputFile">File input</label>
-                                   <input type="file" id="exampleInputFile">
-
-                                   <p class="help-block">Only csv, txt format</p>
-                               </div>
+                                <CsvParser />
                            </div>
                            <!-- /.card-body -->
                        </div>
@@ -106,8 +101,12 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    import CsvParser from '../components/CsvParser'
 
     export default {
+        components: {
+            CsvParser
+        },
         data() {
             return {
 

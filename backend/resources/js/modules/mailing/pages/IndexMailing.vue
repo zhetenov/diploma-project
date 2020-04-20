@@ -120,7 +120,7 @@
         },
         computed: {
             getEmails() {
-                return this.formData.emails.slice(1, 6)
+                return this.formData.emails.slice(0, 6)
             }
         },
         methods: {

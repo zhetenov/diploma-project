@@ -29,7 +29,7 @@ const actions = {
                     message: 'Data received successfully',
                     type: 'success',
                     position: 'top-right',
-                    duration:5000
+                    duration: 5000
                 });
             })
             .catch((error) => {
@@ -37,8 +37,31 @@ const actions = {
                     message: error,
                     type: 'error',
                     position: 'top-right',
-                    duration:5000
+                    duration: 5000
                 });
+            })
+    },
+    uploadData({commit}, payload) {
+        return axios.post('/api/upload/data', payload)
+            .then((response) => {
+                Vue.$toast.open({
+                    message: 'Data uploaded successfully',
+                    type: 'success',
+                    position: 'top-right',
+                    duration: 5000
+                });
+
+                return true
+            })
+            .catch((error) => {
+                Vue.$toast.open({
+                    message: error,
+                    type: 'error',
+                    position: 'top-right',
+                    duration: 5000
+                });
+
+                return false
             })
     }
 }
