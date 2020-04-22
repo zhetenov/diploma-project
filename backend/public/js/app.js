@@ -2136,14 +2136,123 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Statisctics"
+  data: function data() {
+    return {};
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+    statistics: 'getMainStatistics'
+  })),
+  created: function created() {
+    this.$store.dispatch('fetchStatistics');
+  },
+  methods: {}
 });
 
 /***/ }),
@@ -73253,9 +73362,158 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    hello statistics\n")])
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("section", { staticClass: "content" }, [
+      _c("div", { staticClass: "card card-primary card-outline" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-12 col-sm-6 col-md-3" }, [
+              _c("div", { staticClass: "info-box mb-3" }, [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("div", { staticClass: "info-box-content" }, [
+                  _c("span", { staticClass: "info-box-text" }, [
+                    _vm._v("Sales")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "info-box-number" }, [
+                    _vm._v(_vm._s(_vm.statistics.sales))
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12 col-sm-6 col-md-3" }, [
+              _c("div", { staticClass: "info-box" }, [
+                _vm._m(3),
+                _vm._v(" "),
+                _c("div", { staticClass: "info-box-content" }, [
+                  _c("span", { staticClass: "info-box-text" }, [
+                    _vm._v("Turnover")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "info-box-number" }, [
+                    _vm._v(
+                      "\n                                 " +
+                        _vm._s(_vm.statistics.turnover) +
+                        "\n            "
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12 col-sm-6 col-md-3" }, [
+              _c("div", { staticClass: "info-box mb-3" }, [
+                _vm._m(4),
+                _vm._v(" "),
+                _c("div", { staticClass: "info-box-content" }, [
+                  _c("span", { staticClass: "info-box-text" }, [
+                    _vm._v("Last Order")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "info-box-number" }, [
+                    _vm._v(_vm._s(_vm.statistics.last_order))
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "clearfix hidden-md-up" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12 col-sm-6 col-md-3" }, [
+              _c("div", { staticClass: "info-box mb-3" }, [
+                _vm._m(5),
+                _vm._v(" "),
+                _c("div", { staticClass: "info-box-content" }, [
+                  _c("span", { staticClass: "info-box-text" }, [
+                    _vm._v("New Members")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "info-box-number" }, [
+                    _vm._v(_vm._s(_vm.statistics.users))
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "content-header" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row mb-2" }, [
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h1", [_vm._v("Statistics")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+              _c("li", { staticClass: "breadcrumb-item" }, [
+                _c("a", { attrs: { href: "#" } }, [_vm._v("Home")])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item active" }, [
+                _vm._v("Statistics")
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Dashboard")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "info-box-icon bg-success elevation-1" }, [
+      _c("i", { staticClass: "fas fa-shopping-cart" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "info-box-icon bg-info elevation-1" }, [
+      _c("i", { staticClass: "fas fa-coins" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "info-box-icon bg-danger elevation-1" }, [
+      _c("i", { staticClass: "fas fa-sort-amount-up" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "info-box-icon bg-warning elevation-1" }, [
+      _c("i", { staticClass: "fas fa-users" })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -90509,10 +90767,41 @@ _router__WEBPACK_IMPORTED_MODULE_0__["default"].addRoutes([{
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../store */ "./resources/js/store.js");
 
-var state = {};
-var getters = {};
-var mutations = {};
-var actions = {};
+var state = {
+  mainStatisctics: []
+};
+var getters = {
+  getMainStatistics: function getMainStatistics(state) {
+    return state.mainStatisctics;
+  }
+};
+var mutations = {
+  SET_STATISTICS: function SET_STATISTICS(state, statistics) {
+    state.mainStatisctics = statistics;
+  }
+};
+var actions = {
+  fetchStatistics: function fetchStatistics(_ref) {
+    var commit = _ref.commit;
+    return axios.get('/api/statistics').then(function (response) {
+      commit('SET_STATISTICS', response.data);
+      console.log('ress', response);
+      Vue.$toast.open({
+        message: 'Data received successfully',
+        type: 'success',
+        position: 'top-right',
+        duration: 5000
+      });
+    })["catch"](function (error) {
+      Vue.$toast.open({
+        message: error,
+        type: 'error',
+        position: 'top-right',
+        duration: 5000
+      });
+    });
+  }
+};
 _store__WEBPACK_IMPORTED_MODULE_0__["default"].registerModule('statistics', {
   state: state,
   getters: getters,
