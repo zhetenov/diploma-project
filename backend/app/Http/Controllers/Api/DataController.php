@@ -29,7 +29,7 @@ class DataController extends Controller
     public function getUsers(Request $request)
     {
         $data  = $this->userRepository->getUniqueUsers();
-        $items = Pagination::paginate($data, 15, $request->get('page'));
+        $items = Pagination::paginate($data, 7, $request->get('page'));
 
         return DataResource::collection($items);
     }
