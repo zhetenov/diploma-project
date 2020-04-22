@@ -51,6 +51,9 @@ return [
             'transport' => 'sendmail',
             'path' => '/usr/sbin/sendmail -bs',
         ],
+	'mailgun' => [
+            'transport' => 'mailgun',
+        ],
 
         'log' => [
             'transport' => 'log',
