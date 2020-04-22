@@ -13,10 +13,14 @@
                     </router-link>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Statistics</a>
+                    <router-link tag="a" to="/statistics" class="nav-link" active-class="active">
+                        Statistics
+                    </router-link>
                 </li>
                 <li class="nav-item">
-                    <a href="index3.html" class="nav-link">RFM Analyze</a>
+                    <router-link tag="a" to="/rfm" class="nav-link" active-class="active">
+                        RFM Analyze
+                    </router-link>
                 </li>
                 <li class="nav-item">
                     <router-link tag="a" to="/mailing" class="nav-link" active-class="active"

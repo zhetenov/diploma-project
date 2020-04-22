@@ -14,6 +14,7 @@
                             <li class="breadcrumb-item active">Users</li>
                         </ol>
                     </div><!-- /.col -->
+                    <UserInfo :data="currentUserData"/>
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
@@ -45,7 +46,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">All unique users</h3>
-
                                 <div class="card-tools">
                                     <paginate
                                             :page-count="users.meta.last_page"
@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body table-responsive p-0" style="height: 300px;">
+                            <div class="card-body table-responsive p-0" >
                                 <table class="table table-hover" style="text-align:center;">
                                     <thead>
                                     <tr>
@@ -77,7 +77,13 @@
                                         <td>{{ user.client_id}}</td>
                                         <td>{{ user.name }}</td>
                                         <td>{{ user.email }}</td>
-                                        <td><a href=""><i style="color:green;" class="fab fa-shopify fa-lg"></i></a></td>
+                                        <td>
+                                            <a href="javascript:void(0)"
+                                                class="btn btn-primary"
+                                                @click="showModal(user.data)">
+                                                Statistics
+                                            </a>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -102,14 +108,16 @@
 <script>
     import {mapGetters} from 'vuex'
     import CsvParser from '../components/CsvParser'
+    import UserInfo from '../components/UserInfo'
 
     export default {
         components: {
-            CsvParser
+            CsvParser,
+            UserInfo
         },
         data() {
             return {
-
+                currentUserData: null
             }
         },
         computed: {
@@ -122,8 +130,11 @@
         },
         methods: {
             fetchUsers(page = 1) {
-                console.log(page);
                 this.$store.dispatch('fetchUsers', page)
+            },
+            showModal(data) {
+                this.currentUserData = data
+                $('#modal-xl').modal('show')
             }
         }
     }

@@ -10,6 +10,8 @@ import Paginate from 'vuejs-paginate'
 
 import './modules/users'
 import './modules/mailing'
+import './modules/statistics'
+import './modules/rfm'
 
 window.Vue = Vue;
 Vue.use(VueRouter);
