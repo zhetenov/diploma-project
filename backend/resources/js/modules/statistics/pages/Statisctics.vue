@@ -86,6 +86,16 @@
                         </div>
                         <!-- /.col -->
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <BarChartMonthTurnover
+                            :chartData="statistics.data"/>
+                        </div>
+                        <div class="col-md-6">
+                            <BarChartWeekTurnover
+                                :chartData="statistics.data"/>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.card-body -->
                 <!-- /.card-footer-->
@@ -98,8 +108,14 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    import BarChartMonthTurnover from '../components/BarChartMonthTurnover'
+    import BarChartWeekTurnover from '../components/BarCharWeekTurnover'
 
     export default {
+        components: {
+            BarChartMonthTurnover,
+            BarChartWeekTurnover
+        },
         data() {
             return {
             }

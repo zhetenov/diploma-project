@@ -1,0 +1,10 @@
+# process.yml at /var/www/ which is root dir of the project
+apps:
+  # Run php artisan queue:listen to execute queue job
+  - script    : 'artisan'
+    name      : 'artisan-queue-listen'
+    cwd       : '/var/www/crmbox.kz/diploma-project/backend/'
+    args      : 'queue:listen' # or queue:work
+    interpreter : 'php'
+
+  # same way add any other script if any.
