@@ -32,4 +32,5 @@ Route::group(['prefix'=>'api'], function(){
     Route::get('/users', 'Api\DataController@getUsers');
     Route::post('mailing/send', 'Api\EmailController@sendEmail');
     Route::post('/upload/data', 'Api\DataController@uploadData');
+    Route::get('/statistics', 'Api\StatisticController@getStatistics');
 });
