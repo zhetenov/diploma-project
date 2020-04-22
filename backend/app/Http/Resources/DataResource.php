@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class DataResource extends Resource
 {
-    protected $months = ['J'];
-
     /**
      * @param \Illuminate\Http\Request $request
      * @return array
