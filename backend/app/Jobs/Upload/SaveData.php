@@ -6,6 +6,7 @@ use App\Models\Data;
 use Closure;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\LazyCollection;
+use Carbon\Carbon;
 
 class SaveData
 {
@@ -22,7 +23,7 @@ class SaveData
                 Data::create([
                     'user_id'    => $content['user_id'],
                     'client_id'  => $value['client_id'],
-                    'ordered_at' => $value['ordered_at'],
+                    'ordered_at' => new Carbon($value['ordered_at']),
                     'amount'     => $value['amount'],
                     'email'      => $value['email'],
                     'name'       => $value['name']
