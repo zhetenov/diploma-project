@@ -6,6 +6,7 @@ use App\Helper\Pagination;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UploadDataRequest;
 use App\Http\Resources\DataResource;
+use App\Http\Resources\UserResource;
 use App\Jobs\UploadDataJob;
 use App\Repositories\Data\DataRepositoryInterface;
 use Illuminate\Http\Request;
@@ -32,6 +33,18 @@ class DataController extends Controller
         $items = Pagination::paginate($data, 7, $request->get('page'));
 
         return DataResource::collection($items);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function getUsersWihoutGraph(Request $request)
+    {
+        $data  = $this->userRepository->getUniqueUsers();
+        $items = Pagination::paginate($data, 7, $request->get('page'));
+
+        return UserResource::collection($items);
     }
 
     /**

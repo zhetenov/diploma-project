@@ -29,7 +29,7 @@ class StatisticsService
         $amount = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
         foreach ($data as $datum) {
-            $amount[(new Carbon($datum['ordered_at']))->month] += $datum['amount'];
+            $amount[(new Carbon($datum['ordered_at']))->month - 1] += $datum['amount'];
         }
 
         return $amount;

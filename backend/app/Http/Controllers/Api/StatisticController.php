@@ -21,6 +21,15 @@ class StatisticController extends Controller
     {
         $data = Data::where('user_id', Auth::id())->get();
 
+        if (count($data) == 0) {
+            return response([
+                'sales' => 0,
+                'turnover' => 0,
+                'last_order' => '-',
+                'users' => '-',
+                'data' => []
+            ]);
+        }
         return response([
             'sales' => count($data),
             'turnover' => $data->sum('amount'),

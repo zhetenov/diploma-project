@@ -33,4 +33,7 @@ Route::group(['prefix'=>'api'], function(){
     Route::post('mailing/send', 'Api\EmailController@sendEmail');
     Route::post('/upload/data', 'Api\DataController@uploadData');
     Route::get('/statistics', 'Api\StatisticController@getStatistics');
+    Route::post('/rfm', 'Api\RfmController@calculateRfm');
+    Route::get('/rfm/get', 'Api\RfmController@getRfmData');
+    Route::get('/users/without/graph', 'Api\DataController@getUsersWihoutGraph');
 });

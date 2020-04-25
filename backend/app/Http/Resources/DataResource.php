@@ -63,8 +63,8 @@ class DataResource extends Resource
         $transactions = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
         foreach ($data as $datum) {
-            $amount[(new Carbon($datum['ordered_at']))->month] += $datum['amount'];
-            $transactions[(new Carbon($datum['ordered_at']))->month] += 1;
+            $amount[(new Carbon($datum['ordered_at']))->month - 1] += $datum['amount'];
+            $transactions[(new Carbon($datum['ordered_at']))->month - 1] += 1;
         }
 
         return [$amount, $transactions];
