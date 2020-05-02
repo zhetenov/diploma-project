@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-dark navbar-navy">
+<nav class="main-header navbar navbar-expand navbar-light   ">
     <div class="container">
         <div class="navbar-brand">
             <span class="brand-text font-weight-light"><b>CRM</b>Box</span>
@@ -37,7 +37,7 @@
                     @csrf
 
 
-                    <button class="btn btn-link" href="logout" style="color: #fff;">
+                    <button class="btn btn-link" href="logout" style="color: #7c7c7d;">
                        Logout
                     </button>
                 </form>

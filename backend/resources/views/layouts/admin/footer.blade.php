@@ -1,4 +1,4 @@
-<footer class="main-footer dark" style="background-color: #111d42;color: #fff;">
+<footer class="main-footer light">
     <div class="container">
         <!-- To the right -->
         <div class="float-right d-none d-sm-inline">
