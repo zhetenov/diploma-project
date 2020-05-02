@@ -7,6 +7,7 @@ import router from './router';
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-default.css';
 import Paginate from 'vuejs-paginate'
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 import './modules/users'
 import './modules/mailing'
@@ -17,6 +18,7 @@ window.Vue = Vue;
 Vue.use(VueRouter);
 Vue.use(VueToast);
 Vue.component('paginate', Paginate)
+Vue.component('pulse-loader', PulseLoader);
 
 // Close all opened toast immediately
 Vue.$toast.clear();

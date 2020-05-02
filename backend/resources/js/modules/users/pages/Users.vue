@@ -45,6 +45,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
+                                <PulseLoader :loading="loading"></PulseLoader>
                                 <h3 class="card-title">All unique users</h3>
                                 <div class="card-tools">
                                     <paginate
@@ -109,11 +110,13 @@
     import {mapGetters} from 'vuex'
     import CsvParser from '../components/CsvParser'
     import UserInfo from '../components/UserInfo'
+    import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
     export default {
         components: {
             CsvParser,
-            UserInfo
+            UserInfo,
+            PulseLoader
         },
         data() {
             return {
@@ -123,6 +126,7 @@
         computed: {
             ...mapGetters({
                 users: 'getUsers',
+                loading: 'getLoading',
             })
         },
         created() {

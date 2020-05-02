@@ -2,7 +2,8 @@ import store from './../../store'
 
 const state = {
     classifications: [],
-    users_without_graph: []
+    users_without_graph: [],
+    loading: false
 }
 
 const getters = {
@@ -11,6 +12,9 @@ const getters = {
     },
     getUsersWithoutGraph(state) {
         return state.users_without_graph
+    },
+    getLoading(state) {
+        return state.loading
     }
 }
 
@@ -21,15 +25,20 @@ const mutations = {
     SET_USERS_WITHOUT_GRAPH(state, users) {
         state.users_without_graph = users
     },
+    SET_LOADING(state, loading) {
+        state.loading = loading
+    }
 }
 
 const actions = {
     makeClassification({commit}) {
+        commit('SET_LOADING', true)
         return axios.post('/api/rfm')
             .then((response) => {
-
+                commit('SET_LOADING', false)
             })
             .catch((error) => {
+                commit('SET_LOADING', false)
                 Vue.$toast.open({
                     message: error,
                     type: 'error',
@@ -39,8 +48,10 @@ const actions = {
             })
     },
     fetchRfm({commit}) {
+        commit('SET_LOADING', true)
         return axios.get('/api/rfm/get')
             .then((response) => {
+                commit('SET_LOADING', false)
                 commit('SET_CLASSIFICATIONS', response.data)
                 Vue.$toast.open({
                     message: 'Data received successfully',
@@ -50,6 +61,7 @@ const actions = {
                 });
             })
             .catch((error) => {
+                commit('SET_LOADING', false)
                 Vue.$toast.open({
                     message: error,
                     type: 'error',
@@ -59,12 +71,14 @@ const actions = {
             })
     },
     fetchUsersWithoutGraph({commit}, payload) {
+        commit('SET_LOADING', true)
         return axios.get('/api/users/without/graph', {
             params: {
                 page: payload
             }
         })
             .then((response) => {
+                commit('SET_LOADING', false)
                 commit('SET_USERS_WITHOUT_GRAPH', response.data)
                 Vue.$toast.open({
                     message: 'Data received successfully',
