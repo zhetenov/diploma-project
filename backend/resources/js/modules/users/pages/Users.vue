@@ -43,26 +43,14 @@
                 <div class="row">
 
                     <div class="col-lg-12">
+                        <!-- /.card -->
                         <div class="card">
                             <div class="card-header">
-                                <PulseLoader :loading="loading"></PulseLoader>
-                                <h3 class="card-title">All unique users</h3>
-                                <div class="card-tools">
-                                    <paginate
-                                            :page-count="users.meta.last_page"
-                                            :click-handler="fetchUsers"
-                                            :prev-text="'Prev'"
-                                            :next-text="'Next'"
-                                            :container-class="'pagination'"
-                                            :page-class="'page-link'"
-                                            :break-view-class="'item'"
-                                    >
-                                    </paginate>
-                                </div>
+                                <h3 class="card-title">User Classification</h3>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body table-responsive p-0" >
-                                <table class="table table-hover" style="text-align:center;">
+                            <div class="card-body">
+                                <table class="table table-bordered">
                                     <thead>
                                     <tr>
                                         <th>#</th>
@@ -80,8 +68,8 @@
                                         <td>{{ user.email }}</td>
                                         <td>
                                             <a href="javascript:void(0)"
-                                                class="btn btn-primary"
-                                                @click="showModal(user.data)">
+                                               class="btn btn-primary"
+                                               @click="showModal(user.data)">
                                                 Statistics
                                             </a>
                                         </td>
@@ -90,8 +78,13 @@
                                 </table>
                             </div>
                             <!-- /.card-body -->
+                            <div class="card-footer clearfix">
+                                <ul class="pagination pagination-sm m-0 float-right">
+                                    <li class="page-item"><button :disabled="pageNumber === 1" class="dis page-link" @click="prevPage">Prev</button></li>
+                                    <li class="page-item"><button :disabled="pageNumber === users.meta.last_page" class="dis page-link" @click="nextPage">Next</button></li>
+                                </ul>
+                            </div>
                         </div>
-                        <!-- /.card -->
                     </div>
 
                 </div>
@@ -120,7 +113,8 @@
         },
         data() {
             return {
-                currentUserData: null
+                currentUserData: null,
+                pageNumber: 1
             }
         },
         computed: {
@@ -139,21 +133,23 @@
             showModal(data) {
                 this.currentUserData = data
                 $('#modal-xl').modal('show')
+            },
+            nextPage(){
+                this.fetchUsers(++this.pageNumber)
+            },
+            prevPage(){
+                this.fetchUsers(--this.pageNumber)
             }
         }
     }
 </script>
 
 <style>
-    .pagination {
-        display: flex;
-        padding-left: 0;
-        list-style: none;
-    }
-    .page-link {
-        position: relative;
-        color: #0d6efd;
-        background-color: #fff;
-    }
+    .dis:disabled {
+        color: #000;
 
+    }
+    .dis:disabled:hover {
+        background-color:#fff;
+    }
 </style>

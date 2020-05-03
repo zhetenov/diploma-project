@@ -74,7 +74,10 @@ const actions = {
         commit('SET_LOADING', true)
         return axios.get('/api/users/without/graph', {
             params: {
-                page: payload
+                page: payload.page,
+                name: payload.name ?? null,
+                email: payload.email ?? null,
+                rfm: payload.rfm ?? null
             }
         })
             .then((response) => {

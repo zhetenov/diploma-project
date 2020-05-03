@@ -42,6 +42,15 @@ class DataController extends Controller
     public function getUsersWihoutGraph(Request $request)
     {
         $data  = $this->userRepository->getUniqueUsers();
+        if($request->get('name')) {
+            $data = $data->where('name', $request->get('name'));
+        }
+        if($request->get('email')) {
+           $data = $data->where('email', $request->get('email'));
+        }
+        if($request->get('rfm')) {
+            $data = $data->where('score', $request->get('rfm'));
+        }
         $items = Pagination::paginate($data, 7, $request->get('page'));
 
         return UserResource::collection($items);

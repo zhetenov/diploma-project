@@ -21,6 +21,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
+
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Rfm graph</h3>
@@ -49,56 +50,84 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card card-outline collapsed-card">
                             <div class="card-header">
-                                <h3 class="card-title">Users Classification</h3>
-                                <div class="card-tools">
-                                    <paginate
-                                            :page-count="users.meta.last_page"
-                                            :click-handler="fetchUsers"
-                                            :prev-text="'Prev'"
-                                            :next-text="'Next'"
-                                            :container-class="'pagination'"
-                                            :page-class="'page-link'"
-                                            :break-view-class="'item'"
-                                    >
-                                    </paginate>
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="card-body table-responsive p-0" >
-                                        <table class="table table-hover" style="text-align:center;">
-                                            <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>USER ID</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Recency</th>
-                                                <th>Frequency</th>
-                                                <th>Monetary</th>
-                                                <th>RFM Score</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr v-for="(user, index) in users.data">
-                                                <td>{{ index + 1 }}</td>
-                                                <td>{{ user.client_id}}</td>
-                                                <td>{{ user.name }}</td>
-                                                <td>{{ user.email }}</td>
-                                                <td>{{ user.recency }}</td>
-                                                <td>{{ user.frequency }}</td>
-                                                <td>{{ user.monetary }}</td>
-                                                <td>{{ user.score }}</td>
+                                <h3 class="card-title">Filters</h3>
 
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                                    </button>
                                 </div>
+                                <!-- /.card-tools -->
                             </div>
                             <!-- /.card-header -->
+                            <div class="card-body" style="display: none;">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" v-model="filteredName" class="form-control" placeholder="Enter name">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="email" v-model="filteredEmail" class="form-control" placeholder="Enter email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="e">RFM score</label>
+                                    <input type="number" v-model="filteredRfmScore" step="0.1" min="1"  max="4" class="form-control" id="e" placeholder="Enter email">
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" @click="filter" class="btn btn-primary">Search</button>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">User Classification</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>USER ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Recency</th>
+                                        <th>Frequency</th>
+                                        <th>Monetary</th>
+                                        <th>RFM Score</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="(user, index) in users.data">
+                                        <td>{{ index + 1 }}</td>
+                                        <td>{{ user.client_id}}</td>
+                                        <td>{{ user.name }}</td>
+                                        <td>{{ user.email }}</td>
+                                        <td>{{ user.recency }}</td>
+                                        <td>{{ user.frequency }}</td>
+                                        <td>{{ user.monetary }}</td>
+                                        <td>{{ user.score }}</td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
+                                <ul class="pagination pagination-sm m-0 float-right">
+                                    <li class="page-item"><button :disabled="pageNumber == 1" class="dis page-link" @click="prevPage">Prev</button></li>
+                                    <li class="page-item"><button :disabled="pageNumber == users.meta.last_page" class="dis page-link" @click="nextPage">Next</button></li>
+                                </ul>
+                            </div>
                         </div>
                         <!-- /.card -->
                     </div>
@@ -126,7 +155,10 @@
         },
         data() {
             return {
-
+                pageNumber: 1,
+                filteredName: null,
+                filteredEmail: null,
+                filteredRfmScore: null
             }
         },
         name: "RFM",
@@ -142,12 +174,37 @@
                     })
             },
             fetchUsers(page = 1) {
-                this.$store.dispatch('fetchUsersWithoutGraph', page)
+                this.$store.dispatch('fetchUsersWithoutGraph',  {
+                    page: page,
+                    rfm: this.filteredRfmScore,
+                    name: this.filteredName,
+                    email: this.filteredEmail,
+                })
             },
+            nextPage(){
+                this.fetchUsers(++this.pageNumber)
+            },
+            prevPage(){
+                this.fetchUsers(--this.pageNumber)
+            },
+            filter() {
+                this.$store.dispatch('fetchUsersWithoutGraph', {
+                    page:1,
+                    rfm: this.filteredRfmScore,
+                    name: this.filteredName,
+                    email: this.filteredEmail,
+                })
+            }
         }
     }
 </script>
 
 <style scoped>
+    .dis:disabled {
+        color: #000;
 
+    }
+    .dis:disabled:hover {
+        background-color:#fff;
+    }
 </style>

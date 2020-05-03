@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Jobs\Upload\SaveData;
+use App\Models\Data;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -49,6 +50,7 @@ class UploadDataJob implements ShouldQueue
      */
     public function handle()
     {
+        Data::where('user_id', $this->userId)->delete();
         app(Pipeline::class)
             ->send(['file_name' => $this->fileName, 'user_id' => $this->userId])
             ->through($this->loadPipes())
