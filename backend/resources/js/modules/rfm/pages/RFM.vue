@@ -90,6 +90,12 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">User Classification</h3>
+                                <div class="card-tools">
+                                    <a :href="`/api/users/without/graph/file?csv=${filteredRfmScore ? filteredRfmScore : ''}&name=${filteredName ? filteredName: ''}&email=${filteredEmail ? filteredEmail : ''}`"><button class="btn btn-block btn-outline-info btn-flat">
+                                        <i class="fas fa-save"></i> Download
+                                    </button>
+                                    </a>
+                                </div>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -190,6 +196,13 @@
             filter() {
                 this.$store.dispatch('fetchUsersWithoutGraph', {
                     page:1,
+                    rfm: this.filteredRfmScore,
+                    name: this.filteredName,
+                    email: this.filteredEmail,
+                })
+            },
+            download() {
+                this.$store.dispatch('fetchUsersWithoutGraphFile', {
                     rfm: this.filteredRfmScore,
                     name: this.filteredName,
                     email: this.filteredEmail,

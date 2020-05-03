@@ -36,4 +36,5 @@ Route::group(['prefix'=>'api'], function(){
     Route::post('/rfm', 'Api\RfmController@calculateRfm');
     Route::get('/rfm/get', 'Api\RfmController@getRfmData');
     Route::get('/users/without/graph', 'Api\DataController@getUsersWihoutGraph');
+    Route::get('/users/without/graph/file', 'Api\DataController@getUsersWihoutGraphFile');
 });

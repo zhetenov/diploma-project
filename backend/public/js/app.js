@@ -2264,6 +2264,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2313,6 +2319,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     filter: function filter() {
       this.$store.dispatch('fetchUsersWithoutGraph', {
         page: 1,
+        rfm: this.filteredRfmScore,
+        name: this.filteredName,
+        email: this.filteredEmail
+      });
+    },
+    download: function download() {
+      this.$store.dispatch('fetchUsersWithoutGraphFile', {
         rfm: this.filteredRfmScore,
         name: this.filteredName,
         email: this.filteredEmail
@@ -73674,7 +73687,29 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card" }, [
-              _vm._m(2),
+              _c("div", { staticClass: "card-header" }, [
+                _c("h3", { staticClass: "card-title" }, [
+                  _vm._v("User Classification")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-tools" }, [
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        href:
+                          "/api/users/without/graph/file?csv=" +
+                          (_vm.filteredRfmScore ? _vm.filteredRfmScore : "") +
+                          "&name=" +
+                          (_vm.filteredName ? _vm.filteredName : "") +
+                          "&email=" +
+                          (_vm.filteredEmail ? _vm.filteredEmail : "")
+                      }
+                    },
+                    [_vm._m(2)]
+                  )
+                ])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
                 _c("table", { staticClass: "table table-bordered" }, [
@@ -73796,9 +73831,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("User Classification")])
-    ])
+    return _c(
+      "button",
+      { staticClass: "btn btn-block btn-outline-info btn-flat" },
+      [
+        _c("i", { staticClass: "fas fa-save" }),
+        _vm._v(" Download\n                                ")
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -91426,6 +91466,22 @@ var actions = {
         duration: 5000
       });
     });
+  },
+  fetchUsersWithoutGraphFile: function fetchUsersWithoutGraphFile(_ref4, payload) {
+    var _payload$name2, _payload$email2, _payload$rfm2;
+
+    var commit = _ref4.commit;
+    commit('SET_LOADING', true);
+    return axios('/api/users/without/graph/file', {
+      params: {
+        page: payload.page,
+        name: (_payload$name2 = payload.name) !== null && _payload$name2 !== void 0 ? _payload$name2 : null,
+        email: (_payload$email2 = payload.email) !== null && _payload$email2 !== void 0 ? _payload$email2 : null,
+        rfm: (_payload$rfm2 = payload.rfm) !== null && _payload$rfm2 !== void 0 ? _payload$rfm2 : null
+      }
+    }).then(function (response) {
+      console.log(response);
+    })["catch"](function (error) {});
   }
 };
 _store__WEBPACK_IMPORTED_MODULE_0__["default"].registerModule('rfm', {
