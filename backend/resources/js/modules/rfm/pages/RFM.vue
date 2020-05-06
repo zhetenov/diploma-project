@@ -20,7 +20,7 @@
 
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
 
                         <div class="card">
                             <div class="card-header">
@@ -37,8 +37,25 @@
                             <div class="card-content">
                                 <div class="row">
                                     <div class="card-body">
-                                        <div class="tab-content p-0">
-                                            <Scatter :chartData="classifications" :height="300"/>
+                                        <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="false">Manual way</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">KMeans</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content" id="custom-content-below-tabContent">
+                                            <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
+                                                <div class="tab-content p-0">
+                                                    <Scatter :chartData="classifications" :height="300"/>
+                                                    <ScatterRf :chartData="classifications" :height="300"/>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
+                                                <ScatterMl :chartData="classifications" :height="300" style="height: 300px"/>
+                                                <ScatterMlRf :chartData="classifications" :height="300" style="height: 300px"/>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -46,6 +63,104 @@
                             <!-- /.card-header -->
                         </div>
                         <!-- /.card -->
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Statistics</h3>
+                            </div>
+
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="card-body">
+                                        <div class="col-md-12">
+                                            <p class="text-center">
+                                                <strong>Manual Way</strong>
+                                            </p>
+
+                                            <div class="progress-group">
+                                                Very high
+                                                <span class="float-right"><b>{{ classifications.stat.manual.vh }}</b>/{{ classifications.stat.manual.amount }}</span>
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-primary" style="width: 80%"></div>
+                                                </div>
+                                            </div>
+                                            <!-- /.progress-group -->
+
+                                            <div class="progress-group">
+                                                High
+                                                <span class="float-right"><b>{{ classifications.stat.manual.h }}</b>/{{ classifications.stat.manual.amount }}</span>
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-danger" style="width: 75%"></div>
+                                                </div>
+                                            </div>
+
+                                            <!-- /.progress-group -->
+                                            <div class="progress-group">
+                                                <span class="progress-text">Mediym</span>
+                                                <span class="float-right"><b>{{ classifications.stat.manual.m }}</b>/{{ classifications.stat.manual.amount }}</span>
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-success" style="width: 60%"></div>
+                                                </div>
+                                            </div>
+
+                                            <!-- /.progress-group -->
+                                            <div class="progress-group">
+                                                Low
+                                                <span class="float-right"><b>{{ classifications.stat.manual.l }}</b>/{{ classifications.stat.manual.amount }}</span>
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-warning" style="width: 50%"></div>
+                                                </div>
+                                            </div>
+                                            <!-- /.progress-group -->
+                                        </div>
+                                        <br>
+                                        <div class="col-md-12">
+                                            <p class="text-center">
+                                                <strong>Kmeans</strong>
+                                            </p>
+
+                                            <div class="progress-group">
+                                                First Cluster
+                                                <span class="float-right"><b>{{ classifications.stat.ml.vh }}</b>/{{ classifications.stat.manual.amount }}</span>
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-primary" style="width: 80%"></div>
+                                                </div>
+                                            </div>
+                                            <!-- /.progress-group -->
+
+                                            <div class="progress-group">
+                                                Second Cluster
+                                                <span class="float-right"><b>{{ classifications.stat.ml.h }}</b>/{{ classifications.stat.manual.amount }}</span>
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-danger" style="width: 75%"></div>
+                                                </div>
+                                            </div>
+
+                                            <!-- /.progress-group -->
+                                            <div class="progress-group">
+                                                <span class="progress-text">Third Cluster</span>
+                                                <span class="float-right"><b>{{ classifications.stat.ml.m }}</b>/{{ classifications.stat.manual.amount }}</span>
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-success" style="width: 60%"></div>
+                                                </div>
+                                            </div>
+
+                                            <!-- /.progress-group -->
+                                            <div class="progress-group">
+                                                Fourth Cluster
+                                                <span class="float-right"><b>{{ classifications.stat.manual.l }}</b>/{{ classifications.stat.manual.amount }}</span>
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-warning" style="width: 50%"></div>
+                                                </div>
+                                            </div>
+                                            <!-- /.progress-group -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -109,6 +224,7 @@
                                         <th>Recency</th>
                                         <th>Frequency</th>
                                         <th>Monetary</th>
+                                        <th>KMeans Score</th>
                                         <th>RFM Score</th>
                                     </tr>
                                     </thead>
@@ -121,6 +237,7 @@
                                         <td>{{ user.recency }}</td>
                                         <td>{{ user.frequency }}</td>
                                         <td>{{ user.monetary }}</td>
+                                        <td>{{ user.ml }}</td>
                                         <td>{{ user.score }}</td>
 
                                     </tr>
@@ -147,24 +264,35 @@
 
 <script>
     import Scatter from '../components/RfmScatter'
+    import ScatterRf from '../components/RfmScatterRf'
+    import ScatterMl from '../components/RfmScatterMl'
+    import ScatterMlRf from '../components/RfmScatterMlRf'
     import {mapGetters} from 'vuex'
 
     export default {
         components: {
-            Scatter
+            Scatter,
+            ScatterRf,
+            ScatterMl,
+            ScatterMlRf
         },
         computed: {
             ...mapGetters({
                 classifications: 'getClassifications',
                 users: 'getUsersWithoutGraph',
-            })
+            }),
+            fill() {
+                if (this.classifications) {
+                   this.manual.vh = this.classifications.manual.vh
+                }
+            }
         },
         data() {
             return {
                 pageNumber: 1,
                 filteredName: null,
                 filteredEmail: null,
-                filteredRfmScore: null
+                filteredRfmScore: null,
             }
         },
         name: "RFM",
@@ -207,7 +335,7 @@
                     name: this.filteredName,
                     email: this.filteredEmail,
                 })
-            }
+            },
         }
     }
 </script>

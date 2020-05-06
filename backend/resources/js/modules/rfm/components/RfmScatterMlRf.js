@@ -41,36 +41,36 @@ export default {
     watch: {
         'chartData': {
             handler(newOption, oldOption) {
-                console.log('ss',this.chartData);
+                console.log(this.chartData);
                 this.renderChart({
                     datasets: [
                         {
-                            label: 'Very high',
+                            label: 'First Cluster',
                             fill: '+2',
                             borderColor: '#39f507',
                             backgroundColor: '#39f507',
-                            data: this.chartData.manual.rm.v_high
+                            data: this.chartData.ml.rf.first_cluster
                         },
                         {
-                            label: 'High',
+                            label: 'Second Cluster',
                             fill: '+2',
                             borderColor: '#0606f6',
                             backgroundColor: '#0606f6',
-                            data: this.chartData.manual.rm.high,
+                            data: this.chartData.ml.rf.second_cluster,
                         },
                         {
-                            label: 'Medium',
+                            label: 'Third Cluster',
                             fill: '+2',
                             borderColor: '#eff70a',
                             backgroundColor: '#eff70a',
-                            data: this.chartData.manual.rm.medium
+                            data: this.chartData.ml.rf.third_cluster
                         },
                         {
-                            label: 'Low',
+                            label: 'Fourth Cluster',
                             fill: '+2',
                             borderColor: '#ff2011',
                             backgroundColor: '#ff2011',
-                            data: this.chartData.manual.rm.low
+                            data: this.chartData.ml.rf.fourth_cluster
                         }
                     ]
                 }, {responsive: true,
@@ -87,7 +87,7 @@ export default {
                             ticks: {
                                 // Include a dollar sign in the ticks
                                 callback: function(value, index, values) {
-                                    return '$' + value;
+                                    return value+'buys';
                                 }
                             }
                         }],
@@ -102,24 +102,24 @@ export default {
                     },
                     title: {
                         display: true,
-                        text: 'Recency-Monetary Graph'
+                        text: 'Recency-Frequency Graph'
                     },
                     onClick: function(evt) {
 
-                    let element = this.getElementAtEvent(evt);
-                    if(element.length > 0) {
-                        var datasetIndex = element[0]._datasetIndex;
-                        var index = element[0]._index;
-                        simplecopy(element[0]._chart.config.data.datasets[datasetIndex].data[index].u)
-                        Vue.$toast.open({
-                            message: 'Copied to Clipboard',
-                            type: 'info',
-                            position: 'top-right',
-                            duration: 5000
-                        });
+                        let element = this.getElementAtEvent(evt);
+                        if(element.length > 0) {
+                            var datasetIndex = element[0]._datasetIndex;
+                            var index = element[0]._index;
+                            simplecopy(element[0]._chart.config.data.datasets[datasetIndex].data[index].u)
+                            Vue.$toast.open({
+                                message: 'Copied to Clipboard',
+                                type: 'info',
+                                position: 'top-right',
+                                duration: 5000
+                            });
 
+                        }
                     }
-                }
                 })
             },
             deep: true

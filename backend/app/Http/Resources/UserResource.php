@@ -24,7 +24,8 @@ class UserResource extends Resource
             'recency'   => $this->recency,
             'frequency' => $this->frequency,
             'monetary'  => $this->monetary,
-            'score'     => $this->score
+            'score'     => $this->score,
+            'ml'        => $this->kmeans
         ];
 
         return $data;
