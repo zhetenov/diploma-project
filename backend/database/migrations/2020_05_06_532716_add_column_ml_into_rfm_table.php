@@ -14,7 +14,7 @@ class AddColumnMlIntoRfmTable extends Migration
     public function up()
     {
         Schema::table('rfm', function (Blueprint $table) {
-            $table->json('ml');
+            $table->json('ml')->nullable();
         });
     }
 
