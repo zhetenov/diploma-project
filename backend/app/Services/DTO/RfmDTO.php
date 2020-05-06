@@ -4,6 +4,9 @@ namespace App\Services\DTO;
 
 class RfmDTO
 {
+    /** @var integer */
+    public $userId;
+
     /** @var array  */
     public $rfmTable = [];
 

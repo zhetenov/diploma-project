@@ -14,7 +14,7 @@ class RfmController extends Controller
      */
     public function calculateRfm()
     {
-        CalculateRfmJob::dispatch();
+        CalculateRfmJob::dispatch(Auth::id());
 
         return response('Successfully');
     }

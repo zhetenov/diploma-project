@@ -22,6 +22,9 @@ class CalculateRfmJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    /** @var int */
+    protected $user_id;
+
     /**
      * @return array
      */
@@ -37,6 +40,10 @@ class CalculateRfmJob implements ShouldQueue
         ];
     }
 
+    public function __construct($userId)
+    {
+        $this->user_id = $userId;
+    }
 
     /**
      * Execute the job.
@@ -46,8 +53,11 @@ class CalculateRfmJob implements ShouldQueue
     public function handle()
     {
         try {
+            $dto = new RfmDTO();
+            $dto->userId = $this->user_id;
+
             app(Pipeline::class)
-                ->send(new RfmDTO())
+                ->send($dto)
                 ->through($this->loadPipes())
                 ->thenReturn();
         } catch (\Exception $exception) {
