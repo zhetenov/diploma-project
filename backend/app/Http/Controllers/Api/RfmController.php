@@ -5,19 +5,15 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Jobs\CalculateRfmJob;
 use App\Models\RFM;
-use App\Services\RfmService;
 use Illuminate\Support\Facades\Auth;
 
 class RfmController extends Controller
 {
     /**
-     * @param RfmService $service
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function calculateRfm(RfmService $service)
+    public function calculateRfm()
     {
-       // RFM::where('user_id', Auth::id())->delete();
-        //$service->calculateRfm();
         CalculateRfmJob::dispatch();
 
         return response('Successfully');
