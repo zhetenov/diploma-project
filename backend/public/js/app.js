@@ -2390,6 +2390,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -73774,6 +73783,38 @@ var render = function() {
           _c("div", { staticClass: "col-md-8" }, [
             _c("div", { staticClass: "card" }, [
               _c("div", { staticClass: "card-header" }, [
+                _vm.classifications.status
+                  ? _c("div", { staticClass: "ribbon-wrapper" }, [
+                      _vm.classifications.status == "success"
+                        ? _c("div", { staticClass: "ribbon bg-success" }, [
+                            _vm._v(
+                              "\n                                    " +
+                                _vm._s(
+                                  _vm.classifications.status
+                                    ? _vm.classifications.status
+                                    : ""
+                                ) +
+                                "\n                                "
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.classifications.status == "processing"
+                        ? _c("div", { staticClass: "ribbon bg-primary" }, [
+                            _vm._v(
+                              "\n                                    " +
+                                _vm._s(
+                                  _vm.classifications.status
+                                    ? _vm.classifications.status
+                                    : ""
+                                ) +
+                                "\n                                "
+                            )
+                          ])
+                        : _vm._e()
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
                 _c("h3", { staticClass: "card-title" }, [_vm._v("Rfm graph")]),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-tools" }, [
@@ -73894,10 +73935,21 @@ var render = function() {
                         ),
                         _c("span", { staticClass: "float-right" }, [
                           _c("b", [
-                            _vm._v(_vm._s(_vm.classifications.stat.manual.vh))
+                            _vm._v(
+                              _vm._s(
+                                _vm.classifications.stat
+                                  ? _vm.classifications.stat.manual.vh
+                                  : 0
+                              )
+                            )
                           ]),
                           _vm._v(
-                            "/" + _vm._s(_vm.classifications.stat.manual.amount)
+                            "/" +
+                              _vm._s(
+                                _vm.classifications.stat
+                                  ? _vm.classifications.stat.manual.amount
+                                  : 0
+                              )
                           )
                         ]),
                         _vm._v(" "),
@@ -73910,10 +73962,21 @@ var render = function() {
                         ),
                         _c("span", { staticClass: "float-right" }, [
                           _c("b", [
-                            _vm._v(_vm._s(_vm.classifications.stat.manual.h))
+                            _vm._v(
+                              _vm._s(
+                                _vm.classifications.stat
+                                  ? _vm.classifications.stat.manual.h
+                                  : 0
+                              )
+                            )
                           ]),
                           _vm._v(
-                            "/" + _vm._s(_vm.classifications.stat.manual.amount)
+                            "/" +
+                              _vm._s(
+                                _vm.classifications.stat
+                                  ? _vm.classifications.stat.manual.amount
+                                  : 0
+                              )
                           )
                         ]),
                         _vm._v(" "),
@@ -73927,10 +73990,21 @@ var render = function() {
                         _vm._v(" "),
                         _c("span", { staticClass: "float-right" }, [
                           _c("b", [
-                            _vm._v(_vm._s(_vm.classifications.stat.manual.m))
+                            _vm._v(
+                              _vm._s(
+                                _vm.classifications.stat
+                                  ? _vm.classifications.stat.manual.m
+                                  : 0
+                              )
+                            )
                           ]),
                           _vm._v(
-                            "/" + _vm._s(_vm.classifications.stat.manual.amount)
+                            "/" +
+                              _vm._s(
+                                _vm.classifications.stat
+                                  ? _vm.classifications.stat.manual.amount
+                                  : 0
+                              )
                           )
                         ]),
                         _vm._v(" "),
@@ -73943,10 +74017,21 @@ var render = function() {
                         ),
                         _c("span", { staticClass: "float-right" }, [
                           _c("b", [
-                            _vm._v(_vm._s(_vm.classifications.stat.manual.l))
+                            _vm._v(
+                              _vm._s(
+                                _vm.classifications.stat
+                                  ? _vm.classifications.stat.manual.l
+                                  : 0
+                              )
+                            )
                           ]),
                           _vm._v(
-                            "/" + _vm._s(_vm.classifications.stat.manual.amount)
+                            "/" +
+                              _vm._s(
+                                _vm.classifications.stat
+                                  ? _vm.classifications.stat.manual.amount
+                                  : 0
+                              )
                           )
                         ]),
                         _vm._v(" "),
@@ -73965,10 +74050,21 @@ var render = function() {
                         ),
                         _c("span", { staticClass: "float-right" }, [
                           _c("b", [
-                            _vm._v(_vm._s(_vm.classifications.stat.ml.vh))
+                            _vm._v(
+                              _vm._s(
+                                _vm.classifications.stat
+                                  ? _vm.classifications.stat.ml.vh
+                                  : 0
+                              )
+                            )
                           ]),
                           _vm._v(
-                            "/" + _vm._s(_vm.classifications.stat.manual.amount)
+                            "/" +
+                              _vm._s(
+                                _vm.classifications.stat
+                                  ? _vm.classifications.stat.manual.amount
+                                  : 0
+                              )
                           )
                         ]),
                         _vm._v(" "),
@@ -73981,10 +74077,21 @@ var render = function() {
                         ),
                         _c("span", { staticClass: "float-right" }, [
                           _c("b", [
-                            _vm._v(_vm._s(_vm.classifications.stat.ml.h))
+                            _vm._v(
+                              _vm._s(
+                                _vm.classifications.stat
+                                  ? _vm.classifications.stat.ml.h
+                                  : 0
+                              )
+                            )
                           ]),
                           _vm._v(
-                            "/" + _vm._s(_vm.classifications.stat.manual.amount)
+                            "/" +
+                              _vm._s(
+                                _vm.classifications.stat
+                                  ? _vm.classifications.stat.manual.amount
+                                  : 0
+                              )
                           )
                         ]),
                         _vm._v(" "),
@@ -73998,10 +74105,21 @@ var render = function() {
                         _vm._v(" "),
                         _c("span", { staticClass: "float-right" }, [
                           _c("b", [
-                            _vm._v(_vm._s(_vm.classifications.stat.ml.m))
+                            _vm._v(
+                              _vm._s(
+                                _vm.classifications.stat
+                                  ? _vm.classifications.stat.ml.m
+                                  : 0
+                              )
+                            )
                           ]),
                           _vm._v(
-                            "/" + _vm._s(_vm.classifications.stat.manual.amount)
+                            "/" +
+                              _vm._s(
+                                _vm.classifications.stat
+                                  ? _vm.classifications.stat.manual.amount
+                                  : 0
+                              )
                           )
                         ]),
                         _vm._v(" "),
@@ -74014,10 +74132,21 @@ var render = function() {
                         ),
                         _c("span", { staticClass: "float-right" }, [
                           _c("b", [
-                            _vm._v(_vm._s(_vm.classifications.stat.manual.l))
+                            _vm._v(
+                              _vm._s(
+                                _vm.classifications.stat
+                                  ? _vm.classifications.stat.manual.l
+                                  : 0
+                              )
+                            )
                           ]),
                           _vm._v(
-                            "/" + _vm._s(_vm.classifications.stat.manual.amount)
+                            "/" +
+                              _vm._s(
+                                _vm.classifications.stat
+                                  ? _vm.classifications.stat.manual.amount
+                                  : 0
+                              )
                           )
                         ]),
                         _vm._v(" "),

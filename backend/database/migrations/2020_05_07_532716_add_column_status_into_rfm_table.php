@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnMlIntoRfmTable extends Migration
+class AddColumnStatusIntoRfmTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddColumnMlIntoRfmTable extends Migration
     public function up()
     {
         Schema::table('rfm', function (Blueprint $table) {
-            $table->json('ml')->nullable();
+            $table->string('status')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnMlIntoRfmTable extends Migration
     public function down()
     {
         Schema::table('rfm', function (Blueprint $table) {
-            $table->dropColumn('ml');
+            $table->dropColumn('status');
         });
     }
 }
