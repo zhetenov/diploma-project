@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\CalculateRfmJob;
 use App\Models\RFM;
 use App\Services\RfmService;
 use Illuminate\Support\Facades\Auth;
@@ -15,8 +16,9 @@ class RfmController extends Controller
      */
     public function calculateRfm(RfmService $service)
     {
-        RFM::where('user_id', Auth::id())->delete();
-        $service->calculateRfm();
+       // RFM::where('user_id', Auth::id())->delete();
+        //$service->calculateRfm();
+        CalculateRfmJob::dispatch();
 
         return response('Successfully');
     }
@@ -52,8 +54,9 @@ class RfmController extends Controller
                     'h'     => $mlCounts[1],
                     'm'     => $mlCounts[2],
                     'l'     => $mlCounts[3],
-                    ]
-            ]
+                ]
+            ],
+            'status' => $data->status
         ]);
     }
 }

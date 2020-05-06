@@ -24,6 +24,14 @@
 
                         <div class="card">
                             <div class="card-header">
+                                <div  v-if="classifications.status" class="ribbon-wrapper">
+                                    <div v-if="classifications.status == 'success'" class="ribbon bg-success">
+                                        {{ classifications.status ? classifications.status: '' }}
+                                    </div>
+                                    <div v-if="classifications.status == 'processing'" class="ribbon bg-primary">
+                                        {{ classifications.status ? classifications.status: '' }}
+                                    </div>
+                                </div>
                                 <h3 class="card-title">Rfm graph</h3>
                                 <div class="card-tools">
                                     <ul class="nav nav-pills ml-auto">
@@ -35,6 +43,7 @@
                             </div>
 
                             <div class="card-content">
+
                                 <div class="row">
                                     <div class="card-body">
                                         <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
@@ -80,7 +89,7 @@
 
                                             <div class="progress-group">
                                                 Very high
-                                                <span class="float-right"><b>{{ classifications.stat.manual.vh }}</b>/{{ classifications.stat.manual.amount }}</span>
+                                                <span class="float-right"><b>{{classifications.stat ? classifications.stat.manual.vh : 0 }}</b>/{{ classifications.stat ?  classifications.stat.manual.amount : 0}}</span>
                                                 <div class="progress progress-sm">
                                                     <div class="progress-bar bg-primary" style="width: 80%"></div>
                                                 </div>
@@ -89,7 +98,7 @@
 
                                             <div class="progress-group">
                                                 High
-                                                <span class="float-right"><b>{{ classifications.stat.manual.h }}</b>/{{ classifications.stat.manual.amount }}</span>
+                                                <span class="float-right"><b>{{classifications.stat ? classifications.stat.manual.h : 0 }}</b>/{{ classifications.stat ? classifications.stat.manual.amount : 0 }}</span>
                                                 <div class="progress progress-sm">
                                                     <div class="progress-bar bg-danger" style="width: 75%"></div>
                                                 </div>
@@ -98,7 +107,7 @@
                                             <!-- /.progress-group -->
                                             <div class="progress-group">
                                                 <span class="progress-text">Mediym</span>
-                                                <span class="float-right"><b>{{ classifications.stat.manual.m }}</b>/{{ classifications.stat.manual.amount }}</span>
+                                                <span class="float-right"><b>{{classifications.stat ? classifications.stat.manual.m : 0 }}</b>/{{classifications.stat ? classifications.stat.manual.amount : 0 }}</span>
                                                 <div class="progress progress-sm">
                                                     <div class="progress-bar bg-success" style="width: 60%"></div>
                                                 </div>
@@ -107,7 +116,7 @@
                                             <!-- /.progress-group -->
                                             <div class="progress-group">
                                                 Low
-                                                <span class="float-right"><b>{{ classifications.stat.manual.l }}</b>/{{ classifications.stat.manual.amount }}</span>
+                                                <span class="float-right"><b>{{classifications.stat ? classifications.stat.manual.l: 0 }}</b>/{{classifications.stat ? classifications.stat.manual.amount:0 }}</span>
                                                 <div class="progress progress-sm">
                                                     <div class="progress-bar bg-warning" style="width: 50%"></div>
                                                 </div>
@@ -122,7 +131,7 @@
 
                                             <div class="progress-group">
                                                 First Cluster
-                                                <span class="float-right"><b>{{ classifications.stat.ml.vh }}</b>/{{ classifications.stat.manual.amount }}</span>
+                                                <span class="float-right"><b>{{classifications.stat ? classifications.stat.ml.vh:0 }}</b>/{{classifications.stat ? classifications.stat.manual.amount:0 }}</span>
                                                 <div class="progress progress-sm">
                                                     <div class="progress-bar bg-primary" style="width: 80%"></div>
                                                 </div>
@@ -131,7 +140,7 @@
 
                                             <div class="progress-group">
                                                 Second Cluster
-                                                <span class="float-right"><b>{{ classifications.stat.ml.h }}</b>/{{ classifications.stat.manual.amount }}</span>
+                                                <span class="float-right"><b>{{classifications.stat ? classifications.stat.ml.h:0 }}</b>/{{classifications.stat ? classifications.stat.manual.amount:0 }}</span>
                                                 <div class="progress progress-sm">
                                                     <div class="progress-bar bg-danger" style="width: 75%"></div>
                                                 </div>
@@ -140,7 +149,7 @@
                                             <!-- /.progress-group -->
                                             <div class="progress-group">
                                                 <span class="progress-text">Third Cluster</span>
-                                                <span class="float-right"><b>{{ classifications.stat.ml.m }}</b>/{{ classifications.stat.manual.amount }}</span>
+                                                <span class="float-right"><b>{{classifications.stat ? classifications.stat.ml.m: 0 }}</b>/{{classifications.stat ? classifications.stat.manual.amount:0 }}</span>
                                                 <div class="progress progress-sm">
                                                     <div class="progress-bar bg-success" style="width: 60%"></div>
                                                 </div>
@@ -149,7 +158,7 @@
                                             <!-- /.progress-group -->
                                             <div class="progress-group">
                                                 Fourth Cluster
-                                                <span class="float-right"><b>{{ classifications.stat.manual.l }}</b>/{{ classifications.stat.manual.amount }}</span>
+                                                <span class="float-right"><b>{{classifications.stat ? classifications.stat.manual.l:0 }}</b>/{{classifications.stat ? classifications.stat.manual.amount:0 }}</span>
                                                 <div class="progress progress-sm">
                                                     <div class="progress-bar bg-warning" style="width: 50%"></div>
                                                 </div>

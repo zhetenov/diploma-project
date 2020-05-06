@@ -8,5 +8,5 @@ class RFM extends Model
 {
     protected $table = 'rfm';
 
-    protected $fillable = ['user_id', 'data', 'ml'];
+    protected $fillable = ['user_id', 'data', 'ml', 'status'];
 }
