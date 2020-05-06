@@ -6,18 +6,16 @@ use App\Helper\Status;
 use App\Models\Data;
 use App\Models\RFM;
 use App\Services\DTO\RfmDTO;
-use Illuminate\Support\Facades\Auth;
 use Closure;
-use Phpml\Clustering\KMeans;
 
 class SaveDataset
 {
     public function handle(RfmDTO $rfmDTO, Closure $next)
     {
-        $mlDataset = $this->getMlDataset();
+        $mlDataset = $this->getMlDataset($rfmDTO->userId);
         $manualDataset = $this->getManualDataset($rfmDTO->getClassification());
 
-        RFM::where('user_id', Auth::id())->update([
+        RFM::where('user_id', $rfmDTO->userId)->update([
             'data'      => json_encode($manualDataset),
             'ml'        => json_encode($mlDataset),
             'status'    => Status::FINISHED
@@ -26,9 +24,9 @@ class SaveDataset
         return $next($rfmDTO);
     }
 
-    public function getMlDataset()
+    public function getMlDataset(int $userId)
     {
-        $data = Data::where('user_id', Auth::id())->get();
+        $data = Data::where('user_id', $userId)->get();
         $classifications = $data->unique('client_id');
         $vHighRm  = [];
         $highRm   = [];

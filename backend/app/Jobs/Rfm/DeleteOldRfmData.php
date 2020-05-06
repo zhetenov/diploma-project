@@ -11,7 +11,7 @@ class DeleteOldRfmData
 {
     public function handle(RfmDTO $rfmDTO, Closure $next)
     {
-        RFM::where('user_id', Auth::id())->delete();
+        RFM::where('user_id', $rfmDTO->userId)->delete();
 
         return $next($rfmDTO);
     }

@@ -12,7 +12,7 @@ class ComputeManual
     public function handle(RfmDTO $rfmDTO, Closure $next)
     {
         $quantiles = $this->getQuantiles($rfmDTO->getRfmTable());
-        $classifications = $this->makeAndSaveClassification($rfmDTO->getRfmTable(), $quantiles);
+        $classifications = $this->makeAndSaveClassification($rfmDTO->getRfmTable(), $quantiles, $rfmDTO->userId);
         $rfmDTO->setClassification($classifications);
 
         return $next($rfmDTO);
@@ -118,7 +118,7 @@ class ComputeManual
      * @param array $quantiles
      * @return array
      */
-    protected function makeAndSaveClassification(array $rfmTable, array $quantiles): array
+    protected function makeAndSaveClassification(array $rfmTable, array $quantiles, int $userId): array
     {
         $arr = [];
         foreach ($rfmTable as $clientId => $item) {
@@ -133,7 +133,7 @@ class ComputeManual
             $temp['monetary'] = $item['monetary'];
             $temp['frequency'] = $item['frequency'];
 
-            Data::where('user_id', Auth::id())->where('client_id', $clientId)->update([
+            Data::where('user_id', $userId)->where('client_id', $clientId)->update([
                 'recency'   => $item['recency'],
                 'frequency' => $item['frequency'],
                 'monetary'  => $item['monetary'],

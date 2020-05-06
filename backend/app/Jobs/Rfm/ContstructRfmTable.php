@@ -5,18 +5,17 @@ namespace App\Jobs\Rfm;
 use App\Models\Data;
 use App\Services\DTO\RfmDTO;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Closure;
 
 class ContstructRfmTable
 {
     public function handle(RfmDTO $rfmDTO,Closure $next)
     {
-        $data = Data::where('user_id', Auth::id())->get(['client_id', 'amount', 'ordered_at', 'email']);
+        $data = Data::where('user_id', $rfmDTO->userId)->get(['client_id', 'amount', 'ordered_at', 'email']);
         if (empty($data)) {
             //TODO: error
         }
-        $rfmTable = $this->constructRfmTable($data);
+        $rfmTable = $this->constructRfmTable($data, $rfmDTO->userId);
         $rfmDTO->setRfmTable($rfmTable);
 
         return $next($rfmDTO);
@@ -26,7 +25,7 @@ class ContstructRfmTable
      * @param $data
      * @return array
      */
-    protected function constructRfmTable($data): array
+    protected function constructRfmTable($data, $userId): array
     {
         $uniqueUsers = $data->unique('client_id');
 
@@ -34,7 +33,7 @@ class ContstructRfmTable
         foreach ($uniqueUsers as $uniqueUser) {
             $rfmTable[$uniqueUser->client_id] = [
                 'frequency' => $data->where('client_id', $uniqueUser->client_id)->count(),
-                'recency'   => $this->getRecency($uniqueUser->client_id),
+                'recency'   => $this->getRecency($uniqueUser->client_id, $userId),
                 'monetary'  => $data->where('client_id', $uniqueUser->client_id)->sum('amount'),
                 'email'     => $uniqueUser->email
             ];
@@ -48,9 +47,9 @@ class ContstructRfmTable
      * @return int
      * @throws \Exception
      */
-    protected function getRecency(int $clientId)
+    protected function getRecency(int $clientId, int $userId)
     {
-        $latestOrder = Data::where('user_id', Auth::id())
+        $latestOrder = Data::where('user_id', $userId)
             ->where('client_id', $clientId)
             ->latest('ordered_at')
             ->first();

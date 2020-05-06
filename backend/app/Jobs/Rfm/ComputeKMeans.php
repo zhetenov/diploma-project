@@ -25,7 +25,7 @@ class ComputeKMeans
 
         foreach ($clusters as $key => $cluster) {
             foreach ($cluster as $email => $item) {
-                Data::where('user_id', Auth::id())->where('email', $email)->update([
+                Data::where('user_id', $rfmDTO->userId)->where('email', $email)->update([
                     'kmeans' => $key + 1
                 ]);
             }

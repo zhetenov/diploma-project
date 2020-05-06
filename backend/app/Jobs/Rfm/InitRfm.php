@@ -13,7 +13,7 @@ class InitRfm
     public function handle(RfmDTO $rfmDTO, Closure $next)
     {
          RFM::create([
-            'user_id'   => Auth::id(),
+            'user_id'   => $rfmDTO->userId,
             'data'      => '[]',
             'ml'        => '[]',
             'status'    => Status::PROCESSING
