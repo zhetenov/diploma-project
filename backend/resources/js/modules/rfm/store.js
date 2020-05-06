@@ -51,6 +51,7 @@ const actions = {
         commit('SET_LOADING', true)
         return axios.get('/api/rfm/get')
             .then((response) => {
+                console.log(response);
                 commit('SET_LOADING', false)
                 commit('SET_CLASSIFICATIONS', response.data)
                 Vue.$toast.open({

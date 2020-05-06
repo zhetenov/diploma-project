@@ -6,18 +6,45 @@ use App\Models\Data;
 use App\Models\RFM;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Phpml\Clustering\KMeans;
 
 class RfmService
 {
+    /**
+     * @return bool
+     * @throws \Phpml\Exception\InvalidArgumentException
+     */
     public function calculateRfm(): bool
     {
-        $data = Data::where('user_id', Auth::id())->get(['client_id', 'amount', 'ordered_at']);
+        $data = Data::where('user_id', Auth::id())->get(['client_id', 'amount', 'ordered_at', 'email']);
         $rfmTable = $this->constructRfmTable($data);
+        $dataset = $this->getDataset($rfmTable);
+        $this->computeAndSaveKMeans($dataset);
         $quantiles = $this->getQuantiles($rfmTable);
         $classifications = $this->makeAndSaveClassification($rfmTable, $quantiles);
-        $this->saveDataset($classifications);
+        $ml = $this->saveMlDataset();
+        $this->saveDataset($classifications, $ml);
 
         return true;
+    }
+
+    /**
+     * @param array $dataset
+     * @throws \Phpml\Exception\InvalidArgumentException
+     */
+    protected function computeAndSaveKMeans(array $dataset)
+    {
+        $kmeans = new KMeans(4);
+
+        $clusters = $kmeans->cluster($dataset);
+
+        foreach ($clusters as $key => $cluster) {
+            foreach ($cluster as $email => $item) {
+                Data::where('user_id', Auth::id())->where('email', $email)->update([
+                    'kmeans' => $key + 1
+                ]);
+            }
+        }
     }
 
     protected function constructRfmTable($data)
@@ -29,7 +56,8 @@ class RfmService
             $rfmTable[$uniqueUser->client_id] = [
                 'frequency' => $data->where('client_id', $uniqueUser->client_id)->count(),
                 'recency'   => $this->getRecency($uniqueUser->client_id),
-                'monetary'  => $data->where('client_id', $uniqueUser->client_id)->sum('amount')
+                'monetary'  => $data->where('client_id', $uniqueUser->client_id)->sum('amount'),
+                'email'     => $uniqueUser->email
             ];
         }
 
@@ -169,6 +197,7 @@ class RfmService
             $temp['rfm_score'] = round(array_sum([$temp['r_quartile'], $temp['f_quartile'], $temp['m_quartile']]) / 3, 1)
             ;
             $temp['client_id'] = $clientId;
+            $temp['email'] = $item['email'];
             $temp['recency'] = $item['recency'];
             $temp['monetary'] = $item['monetary'];
             $temp['frequency'] = $item['frequency'];
@@ -185,53 +214,186 @@ class RfmService
         return $arr;
     }
 
-    public function saveDataset(array $classifications)
+    public function saveDataset(array $classifications, array $ml)
     {
-        $vHigh  = [];
-        $high   = [];
-        $medium = [];
-        $low    = [];
+        $vHighRm  = [];
+        $highRm   = [];
+        $mediumRm = [];
+        $lowRm    = [];
+        $vHighRf  = [];
+        $highRf   = [];
+        $mediumRf = [];
+        $lowRf    = [];
 
         foreach ($classifications as $class)
         {
             $score = $class['rfm_score'];
             if ($score < 2) {
-                $vHigh[] = [
+                $vHighRm[] = [
                     'x' => $class['recency'],
-                    'y' => $class['monetary']
+                    'y' => $class['monetary'],
+                    'u' => $class['email'],
+                ];
+                $vHighRf[] = [
+                    'x' => $class['recency'],
+                    'y' => $class['frequency'],
+                    'u' => $class['email'],
                 ];
             }
             elseif ($score >=2 && $score < 3) {
-                $high[] = [
+                $highRm[] = [
                     'x' => $class['recency'],
-                    'y' => $class['monetary']
+                    'y' => $class['monetary'],
+                    'u' => $class['email']
+                ];
+                $highRf[] = [
+                    'x' => $class['recency'],
+                    'y' => $class['frequency'],
+                    'u' => $class['email']
                 ];
             }
             elseif ($score >=3 && $score < 4) {
-                $medium[] = [
+                $mediumRm[] = [
                     'x' => $class['recency'],
-                    'y' => $class['monetary']
+                    'y' => $class['monetary'],
+                    'u' => $class['email']
+                ];
+                $mediumRf[] = [
+                    'x' => $class['recency'],
+                    'y' => $class['frequency'],
+                    'u' => $class['email']
                 ];
             }
             elseif ($score == 4) {
-                $low[] = [
+                $lowRm[] = [
                     'x' => $class['recency'],
-                    'y' => $class['monetary']
+                    'y' => $class['monetary'],
+                    'u' => $class['email']
+                ];
+                $lowRf[] = [
+                    'x' => $class['recency'],
+                    'y' => $class['frequency'],
+                    'u' => $class['email']
                 ];
             }
 
         }
 
         $data = [
-            'v_high' => $vHigh,
-            'high'   => $high,
-            'medium' => $medium,
-            'low'    => $low,
+            'rm' => [
+                'v_high' => $vHighRm,
+                'high'   => $highRm,
+                'medium' => $mediumRm,
+                'low'    => $lowRm,
+            ],
+            'rf' => [
+                'v_high' => $vHighRf,
+                'high'   => $highRf,
+                'medium' => $mediumRf,
+                'low'    => $lowRf,
+            ]
         ];
 
         RFM::create([
             'user_id' => Auth::id(),
-            'data'  => json_encode($data)
+            'data'  => json_encode($data),
+            'ml' => json_encode($ml)
         ]);
+    }
+
+    public function saveMlDataset()
+    {
+
+        $data = Data::where('user_id', Auth::id())->get();
+        $classifications = $data->unique('client_id');
+        $vHighRm  = [];
+        $highRm   = [];
+        $mediumRm = [];
+        $lowRm    = [];
+        $vHighRf  = [];
+        $highRf   = [];
+        $mediumRf = [];
+        $lowRf    = [];
+
+        foreach ($classifications as $class)
+        {
+            $score = $class['kmeans'];
+            if ($score == 1) {
+                $vHighRm[] = [
+                    'x' => $class['recency'],
+                    'y' => $class['monetary'],
+                    'u' => $class['email'],
+                ];
+                $vHighRf[] = [
+                    'x' => $class['recency'],
+                    'y' => $class['frequency'],
+                    'u' => $class['email'],
+                ];
+            }
+            elseif ($score == 2) {
+                $highRm[] = [
+                    'x' => $class['recency'],
+                    'y' => $class['monetary'],
+                    'u' => $class['email']
+                ];
+                $highRf[] = [
+                    'x' => $class['recency'],
+                    'y' => $class['frequency'],
+                    'u' => $class['email']
+                ];
+            }
+            elseif ($score ==3) {
+                $mediumRm[] = [
+                    'x' => $class['recency'],
+                    'y' => $class['monetary'],
+                    'u' => $class['email']
+                ];
+                $mediumRf[] = [
+                    'x' => $class['recency'],
+                    'y' => $class['frequency'],
+                    'u' => $class['email']
+                ];
+            }
+            elseif ($score == 4) {
+                $lowRm[] = [
+                    'x' => $class['recency'],
+                    'y' => $class['monetary'],
+                    'u' => $class['email']
+                ];
+                $lowRf[] = [
+                    'x' => $class['recency'],
+                    'y' => $class['frequency'],
+                    'u' => $class['email']
+                ];
+            }
+
+        }
+
+        $data = [
+            'rm' => [
+                'first_cluster'     => $vHighRm,
+                'second_cluster'    => $highRm,
+                'third_cluster'     => $mediumRm,
+                'fourth_cluster'    => $lowRm,
+            ],
+            'rf' => [
+                'first_cluster'     => $vHighRf,
+                'second_cluster'    => $highRf,
+                'third_cluster'     => $mediumRf,
+                'fourth_cluster'    => $lowRf,
+            ]
+        ];
+
+        return $data;
+    }
+
+    protected function getDataset(array $rfmTable)
+    {
+        $arr = [];
+        foreach ($rfmTable as $item) {
+            $arr[$item['email']] = [$item['recency'], $item['frequency'], $item['monetary']];
+        }
+
+        return $arr;
     }
 }

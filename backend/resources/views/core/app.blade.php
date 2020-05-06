@@ -15,7 +15,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <script src="{{ asset('front/js/simplecopy.min.js') }}"></script>
 </head>
 <body class="layout-top-nav" style="height: auto; min-height: 100%;">
 

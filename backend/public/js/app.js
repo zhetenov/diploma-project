@@ -2116,7 +2116,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_RfmScatter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/RfmScatter */ "./resources/js/modules/rfm/components/RfmScatter.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_RfmScatterRf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/RfmScatterRf */ "./resources/js/modules/rfm/components/RfmScatterRf.js");
+/* harmony import */ var _components_RfmScatterMl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/RfmScatterMl */ "./resources/js/modules/rfm/components/RfmScatterMl.js");
+/* harmony import */ var _components_RfmScatterMlRf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/RfmScatterMlRf */ "./resources/js/modules/rfm/components/RfmScatterMlRf.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2270,16 +2273,145 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Scatter: _components_RfmScatter__WEBPACK_IMPORTED_MODULE_0__["default"]
+    Scatter: _components_RfmScatter__WEBPACK_IMPORTED_MODULE_0__["default"],
+    ScatterRf: _components_RfmScatterRf__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ScatterMl: _components_RfmScatterMl__WEBPACK_IMPORTED_MODULE_2__["default"],
+    ScatterMlRf: _components_RfmScatterMlRf__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])({
     classifications: 'getClassifications',
     users: 'getUsersWithoutGraph'
-  })),
+  }), {
+    fill: function fill() {
+      if (this.classifications) {
+        this.manual.vh = this.classifications.manual.vh;
+      }
+    }
+  }),
   data: function data() {
     return {
       pageNumber: 1,
@@ -23580,6 +23712,23 @@ return src;
 
 })));
 
+
+/***/ }),
+
+/***/ "./node_modules/clipboard/dist/clipboard.min.js":
+/*!******************************************************!*\
+  !*** ./node_modules/clipboard/dist/clipboard.min.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * clipboard.js v2.0.6
+ * https://clipboardjs.com/
+ * 
+ * Licensed MIT © Zeno Rocha
+ */
+!function(t,e){ true?module.exports=e():undefined}(this,function(){return o={},r.m=n=[function(t,e){t.exports=function(t){var e;if("SELECT"===t.nodeName)t.focus(),e=t.value;else if("INPUT"===t.nodeName||"TEXTAREA"===t.nodeName){var n=t.hasAttribute("readonly");n||t.setAttribute("readonly",""),t.select(),t.setSelectionRange(0,t.value.length),n||t.removeAttribute("readonly"),e=t.value}else{t.hasAttribute("contenteditable")&&t.focus();var o=window.getSelection(),r=document.createRange();r.selectNodeContents(t),o.removeAllRanges(),o.addRange(r),e=o.toString()}return e}},function(t,e){function n(){}n.prototype={on:function(t,e,n){var o=this.e||(this.e={});return(o[t]||(o[t]=[])).push({fn:e,ctx:n}),this},once:function(t,e,n){var o=this;function r(){o.off(t,r),e.apply(n,arguments)}return r._=e,this.on(t,r,n)},emit:function(t){for(var e=[].slice.call(arguments,1),n=((this.e||(this.e={}))[t]||[]).slice(),o=0,r=n.length;o<r;o++)n[o].fn.apply(n[o].ctx,e);return this},off:function(t,e){var n=this.e||(this.e={}),o=n[t],r=[];if(o&&e)for(var i=0,a=o.length;i<a;i++)o[i].fn!==e&&o[i].fn._!==e&&r.push(o[i]);return r.length?n[t]=r:delete n[t],this}},t.exports=n,t.exports.TinyEmitter=n},function(t,e,n){var d=n(3),h=n(4);t.exports=function(t,e,n){if(!t&&!e&&!n)throw new Error("Missing required arguments");if(!d.string(e))throw new TypeError("Second argument must be a String");if(!d.fn(n))throw new TypeError("Third argument must be a Function");if(d.node(t))return s=e,f=n,(u=t).addEventListener(s,f),{destroy:function(){u.removeEventListener(s,f)}};if(d.nodeList(t))return a=t,c=e,l=n,Array.prototype.forEach.call(a,function(t){t.addEventListener(c,l)}),{destroy:function(){Array.prototype.forEach.call(a,function(t){t.removeEventListener(c,l)})}};if(d.string(t))return o=t,r=e,i=n,h(document.body,o,r,i);throw new TypeError("First argument must be a String, HTMLElement, HTMLCollection, or NodeList");var o,r,i,a,c,l,u,s,f}},function(t,n){n.node=function(t){return void 0!==t&&t instanceof HTMLElement&&1===t.nodeType},n.nodeList=function(t){var e=Object.prototype.toString.call(t);return void 0!==t&&("[object NodeList]"===e||"[object HTMLCollection]"===e)&&"length"in t&&(0===t.length||n.node(t[0]))},n.string=function(t){return"string"==typeof t||t instanceof String},n.fn=function(t){return"[object Function]"===Object.prototype.toString.call(t)}},function(t,e,n){var a=n(5);function i(t,e,n,o,r){var i=function(e,n,t,o){return function(t){t.delegateTarget=a(t.target,n),t.delegateTarget&&o.call(e,t)}}.apply(this,arguments);return t.addEventListener(n,i,r),{destroy:function(){t.removeEventListener(n,i,r)}}}t.exports=function(t,e,n,o,r){return"function"==typeof t.addEventListener?i.apply(null,arguments):"function"==typeof n?i.bind(null,document).apply(null,arguments):("string"==typeof t&&(t=document.querySelectorAll(t)),Array.prototype.map.call(t,function(t){return i(t,e,n,o,r)}))}},function(t,e){if("undefined"!=typeof Element&&!Element.prototype.matches){var n=Element.prototype;n.matches=n.matchesSelector||n.mozMatchesSelector||n.msMatchesSelector||n.oMatchesSelector||n.webkitMatchesSelector}t.exports=function(t,e){for(;t&&9!==t.nodeType;){if("function"==typeof t.matches&&t.matches(e))return t;t=t.parentNode}}},function(t,e,n){"use strict";n.r(e);var o=n(0),r=n.n(o),i="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t};function a(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}function c(t){!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,c),this.resolveOptions(t),this.initSelection()}var l=(function(t,e,n){return e&&a(t.prototype,e),n&&a(t,n),t}(c,[{key:"resolveOptions",value:function(t){var e=0<arguments.length&&void 0!==t?t:{};this.action=e.action,this.container=e.container,this.emitter=e.emitter,this.target=e.target,this.text=e.text,this.trigger=e.trigger,this.selectedText=""}},{key:"initSelection",value:function(){this.text?this.selectFake():this.target&&this.selectTarget()}},{key:"selectFake",value:function(){var t=this,e="rtl"==document.documentElement.getAttribute("dir");this.removeFake(),this.fakeHandlerCallback=function(){return t.removeFake()},this.fakeHandler=this.container.addEventListener("click",this.fakeHandlerCallback)||!0,this.fakeElem=document.createElement("textarea"),this.fakeElem.style.fontSize="12pt",this.fakeElem.style.border="0",this.fakeElem.style.padding="0",this.fakeElem.style.margin="0",this.fakeElem.style.position="absolute",this.fakeElem.style[e?"right":"left"]="-9999px";var n=window.pageYOffset||document.documentElement.scrollTop;this.fakeElem.style.top=n+"px",this.fakeElem.setAttribute("readonly",""),this.fakeElem.value=this.text,this.container.appendChild(this.fakeElem),this.selectedText=r()(this.fakeElem),this.copyText()}},{key:"removeFake",value:function(){this.fakeHandler&&(this.container.removeEventListener("click",this.fakeHandlerCallback),this.fakeHandler=null,this.fakeHandlerCallback=null),this.fakeElem&&(this.container.removeChild(this.fakeElem),this.fakeElem=null)}},{key:"selectTarget",value:function(){this.selectedText=r()(this.target),this.copyText()}},{key:"copyText",value:function(){var e=void 0;try{e=document.execCommand(this.action)}catch(t){e=!1}this.handleResult(e)}},{key:"handleResult",value:function(t){this.emitter.emit(t?"success":"error",{action:this.action,text:this.selectedText,trigger:this.trigger,clearSelection:this.clearSelection.bind(this)})}},{key:"clearSelection",value:function(){this.trigger&&this.trigger.focus(),document.activeElement.blur(),window.getSelection().removeAllRanges()}},{key:"destroy",value:function(){this.removeFake()}},{key:"action",set:function(t){var e=0<arguments.length&&void 0!==t?t:"copy";if(this._action=e,"copy"!==this._action&&"cut"!==this._action)throw new Error('Invalid "action" value, use either "copy" or "cut"')},get:function(){return this._action}},{key:"target",set:function(t){if(void 0!==t){if(!t||"object"!==(void 0===t?"undefined":i(t))||1!==t.nodeType)throw new Error('Invalid "target" value, use a valid Element');if("copy"===this.action&&t.hasAttribute("disabled"))throw new Error('Invalid "target" attribute. Please use "readonly" instead of "disabled" attribute');if("cut"===this.action&&(t.hasAttribute("readonly")||t.hasAttribute("disabled")))throw new Error('Invalid "target" attribute. You can\'t cut text from elements with "readonly" or "disabled" attributes');this._target=t}},get:function(){return this._target}}]),c),u=n(1),s=n.n(u),f=n(2),d=n.n(f),h="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},p=function(t,e,n){return e&&y(t.prototype,e),n&&y(t,n),t};function y(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}var m=(function(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}(v,s.a),p(v,[{key:"resolveOptions",value:function(t){var e=0<arguments.length&&void 0!==t?t:{};this.action="function"==typeof e.action?e.action:this.defaultAction,this.target="function"==typeof e.target?e.target:this.defaultTarget,this.text="function"==typeof e.text?e.text:this.defaultText,this.container="object"===h(e.container)?e.container:document.body}},{key:"listenClick",value:function(t){var e=this;this.listener=d()(t,"click",function(t){return e.onClick(t)})}},{key:"onClick",value:function(t){var e=t.delegateTarget||t.currentTarget;this.clipboardAction&&(this.clipboardAction=null),this.clipboardAction=new l({action:this.action(e),target:this.target(e),text:this.text(e),container:this.container,trigger:e,emitter:this})}},{key:"defaultAction",value:function(t){return b("action",t)}},{key:"defaultTarget",value:function(t){var e=b("target",t);if(e)return document.querySelector(e)}},{key:"defaultText",value:function(t){return b("text",t)}},{key:"destroy",value:function(){this.listener.destroy(),this.clipboardAction&&(this.clipboardAction.destroy(),this.clipboardAction=null)}}],[{key:"isSupported",value:function(t){var e=0<arguments.length&&void 0!==t?t:["copy","cut"],n="string"==typeof e?[e]:e,o=!!document.queryCommandSupported;return n.forEach(function(t){o=o&&!!document.queryCommandSupported(t)}),o}}]),v);function v(t,e){!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,v);var n=function(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}(this,(v.__proto__||Object.getPrototypeOf(v)).call(this));return n.resolveOptions(e),n.listenClick(t),n}function b(t,e){var n="data-clipboard-"+t;if(e.hasAttribute(n))return e.getAttribute(n)}e.default=m}],r.c=o,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},r.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,"a",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p="",r(r.s=6).default;function r(t){if(o[t])return o[t].exports;var e=o[t]={i:t,l:!1,exports:{}};return n[t].call(e.exports,e,e.exports,r),e.l=!0,e.exports}var n,o});
 
 /***/ }),
 
@@ -73107,6 +73256,100 @@ var reactiveProp = {
 
 /***/ }),
 
+/***/ "./node_modules/vue-clipboard2/vue-clipboard.js":
+/*!******************************************************!*\
+  !*** ./node_modules/vue-clipboard2/vue-clipboard.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Clipboard = __webpack_require__(/*! clipboard/dist/clipboard.min.js */ "./node_modules/clipboard/dist/clipboard.min.js") // FIXME: workaround for browserify
+
+var VueClipboardConfig = {
+  autoSetContainer: false,
+  appendToBody: true // This fixes IE, see #50
+}
+
+var VueClipboard = {
+  install: function (Vue) {
+    Vue.prototype.$clipboardConfig = VueClipboardConfig
+    Vue.prototype.$copyText = function (text, container) {
+      return new Promise(function (resolve, reject) {
+        var fakeElement = document.createElement('button')
+        var clipboard = new Clipboard(fakeElement, {
+          text: function () { return text },
+          action: function () { return 'copy' },
+          container: typeof container === 'object' ? container : document.body
+        })
+        clipboard.on('success', function (e) {
+          clipboard.destroy()
+          resolve(e)
+        })
+        clipboard.on('error', function (e) {
+          clipboard.destroy()
+          reject(e)
+        })
+        if (VueClipboardConfig.appendToBody) document.body.appendChild(fakeElement)
+        fakeElement.click()
+        if (VueClipboardConfig.appendToBody) document.body.removeChild(fakeElement)
+      })
+    }
+
+    Vue.directive('clipboard', {
+      bind: function (el, binding, vnode) {
+        if (binding.arg === 'success') {
+          el._vClipboard_success = binding.value
+        } else if (binding.arg === 'error') {
+          el._vClipboard_error = binding.value
+        } else {
+          var clipboard = new Clipboard(el, {
+            text: function () { return binding.value },
+            action: function () { return binding.arg === 'cut' ? 'cut' : 'copy' },
+            container: VueClipboardConfig.autoSetContainer ? el : undefined
+          })
+          clipboard.on('success', function (e) {
+            var callback = el._vClipboard_success
+            callback && callback(e)
+          })
+          clipboard.on('error', function (e) {
+            var callback = el._vClipboard_error
+            callback && callback(e)
+          })
+          el._vClipboard = clipboard
+        }
+      },
+      update: function (el, binding) {
+        if (binding.arg === 'success') {
+          el._vClipboard_success = binding.value
+        } else if (binding.arg === 'error') {
+          el._vClipboard_error = binding.value
+        } else {
+          el._vClipboard.text = function () { return binding.value }
+          el._vClipboard.action = function () { return binding.arg === 'cut' ? 'cut' : 'copy' }
+        }
+      },
+      unbind: function (el, binding) {
+        if (binding.arg === 'success') {
+          delete el._vClipboard_success
+        } else if (binding.arg === 'error') {
+          delete el._vClipboard_error
+        } else {
+          el._vClipboard.destroy()
+          delete el._vClipboard
+        }
+      }
+    })
+  },
+  config: VueClipboardConfig
+}
+
+if (true) {
+  module.exports = VueClipboard
+} else {}
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/index.js?!./node_modules/vue-spinner/src/PulseLoader.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue-spinner/src/PulseLoader.vue?vue&type=script&lang=js& ***!
@@ -73528,7 +73771,7 @@ var render = function() {
     _c("div", { staticClass: "content" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "col-md-8" }, [
             _c("div", { staticClass: "card" }, [
               _c("div", { staticClass: "card-header" }, [
                 _c("h3", { staticClass: "card-title" }, [_vm._v("Rfm graph")]),
@@ -73554,16 +73797,233 @@ var render = function() {
               _c("div", { staticClass: "card-content" }, [
                 _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "card-body" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
                     _c(
                       "div",
-                      { staticClass: "tab-content p-0" },
+                      {
+                        staticClass: "tab-content",
+                        attrs: { id: "custom-content-below-tabContent" }
+                      },
                       [
-                        _c("Scatter", {
-                          attrs: { chartData: _vm.classifications, height: 300 }
-                        })
-                      ],
-                      1
+                        _c(
+                          "div",
+                          {
+                            staticClass: "tab-pane fade show active",
+                            attrs: {
+                              id: "custom-content-below-home",
+                              role: "tabpanel",
+                              "aria-labelledby": "custom-content-below-home-tab"
+                            }
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "tab-content p-0" },
+                              [
+                                _c("Scatter", {
+                                  attrs: {
+                                    chartData: _vm.classifications,
+                                    height: 300
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("ScatterRf", {
+                                  attrs: {
+                                    chartData: _vm.classifications,
+                                    height: 300
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "tab-pane fade",
+                            attrs: {
+                              id: "custom-content-below-profile",
+                              role: "tabpanel",
+                              "aria-labelledby":
+                                "custom-content-below-profile-tab"
+                            }
+                          },
+                          [
+                            _c("ScatterMl", {
+                              staticStyle: { height: "300px" },
+                              attrs: {
+                                chartData: _vm.classifications,
+                                height: 300
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("ScatterMlRf", {
+                              staticStyle: { height: "300px" },
+                              attrs: {
+                                chartData: _vm.classifications,
+                                height: 300
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]
                     )
+                  ])
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-4" }, [
+            _c("div", { staticClass: "card" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-content" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "progress-group" }, [
+                        _vm._v(
+                          "\n                                            Very high\n                                            "
+                        ),
+                        _c("span", { staticClass: "float-right" }, [
+                          _c("b", [
+                            _vm._v(_vm._s(_vm.classifications.stat.manual.vh))
+                          ]),
+                          _vm._v(
+                            "/" + _vm._s(_vm.classifications.stat.manual.amount)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(4)
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "progress-group" }, [
+                        _vm._v(
+                          "\n                                            High\n                                            "
+                        ),
+                        _c("span", { staticClass: "float-right" }, [
+                          _c("b", [
+                            _vm._v(_vm._s(_vm.classifications.stat.manual.h))
+                          ]),
+                          _vm._v(
+                            "/" + _vm._s(_vm.classifications.stat.manual.amount)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(5)
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "progress-group" }, [
+                        _c("span", { staticClass: "progress-text" }, [
+                          _vm._v("Mediym")
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "float-right" }, [
+                          _c("b", [
+                            _vm._v(_vm._s(_vm.classifications.stat.manual.m))
+                          ]),
+                          _vm._v(
+                            "/" + _vm._s(_vm.classifications.stat.manual.amount)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(6)
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "progress-group" }, [
+                        _vm._v(
+                          "\n                                            Low\n                                            "
+                        ),
+                        _c("span", { staticClass: "float-right" }, [
+                          _c("b", [
+                            _vm._v(_vm._s(_vm.classifications.stat.manual.l))
+                          ]),
+                          _vm._v(
+                            "/" + _vm._s(_vm.classifications.stat.manual.amount)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(7)
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _vm._m(8),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "progress-group" }, [
+                        _vm._v(
+                          "\n                                            First Cluster\n                                            "
+                        ),
+                        _c("span", { staticClass: "float-right" }, [
+                          _c("b", [
+                            _vm._v(_vm._s(_vm.classifications.stat.ml.vh))
+                          ]),
+                          _vm._v(
+                            "/" + _vm._s(_vm.classifications.stat.manual.amount)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(9)
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "progress-group" }, [
+                        _vm._v(
+                          "\n                                            Second Cluster\n                                            "
+                        ),
+                        _c("span", { staticClass: "float-right" }, [
+                          _c("b", [
+                            _vm._v(_vm._s(_vm.classifications.stat.ml.h))
+                          ]),
+                          _vm._v(
+                            "/" + _vm._s(_vm.classifications.stat.manual.amount)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(10)
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "progress-group" }, [
+                        _c("span", { staticClass: "progress-text" }, [
+                          _vm._v("Third Cluster")
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "float-right" }, [
+                          _c("b", [
+                            _vm._v(_vm._s(_vm.classifications.stat.ml.m))
+                          ]),
+                          _vm._v(
+                            "/" + _vm._s(_vm.classifications.stat.manual.amount)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(11)
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "progress-group" }, [
+                        _vm._v(
+                          "\n                                            Fourth Cluster\n                                            "
+                        ),
+                        _c("span", { staticClass: "float-right" }, [
+                          _c("b", [
+                            _vm._v(_vm._s(_vm.classifications.stat.manual.l))
+                          ]),
+                          _vm._v(
+                            "/" + _vm._s(_vm.classifications.stat.manual.amount)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(12)
+                      ])
+                    ])
                   ])
                 ])
               ])
@@ -73574,7 +74034,7 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "card card-outline collapsed-card" }, [
-              _vm._m(1),
+              _vm._m(13),
               _vm._v(" "),
               _c(
                 "div",
@@ -73706,14 +74166,14 @@ var render = function() {
                           (_vm.filteredEmail ? _vm.filteredEmail : "")
                       }
                     },
-                    [_vm._m(2)]
+                    [_vm._m(14)]
                   )
                 ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
                 _c("table", { staticClass: "table table-bordered" }, [
-                  _vm._m(3),
+                  _vm._m(15),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -73732,6 +74192,8 @@ var render = function() {
                         _c("td", [_vm._v(_vm._s(user.frequency))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(user.monetary))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(user.ml))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(user.score))])
                       ])
@@ -73812,6 +74274,167 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c(
+      "ul",
+      {
+        staticClass: "nav nav-tabs",
+        attrs: { id: "custom-content-below-tab", role: "tablist" }
+      },
+      [
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link active",
+              attrs: {
+                id: "custom-content-below-home-tab",
+                "data-toggle": "pill",
+                href: "#custom-content-below-home",
+                role: "tab",
+                "aria-controls": "custom-content-below-home",
+                "aria-selected": "false"
+              }
+            },
+            [_vm._v("Manual way")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                id: "custom-content-below-profile-tab",
+                "data-toggle": "pill",
+                href: "#custom-content-below-profile",
+                role: "tab",
+                "aria-controls": "custom-content-below-profile",
+                "aria-selected": "false"
+              }
+            },
+            [_vm._v("KMeans")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Statistics")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "text-center" }, [
+      _c("strong", [_vm._v("Manual Way")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "progress progress-sm" }, [
+      _c("div", {
+        staticClass: "progress-bar bg-primary",
+        staticStyle: { width: "80%" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "progress progress-sm" }, [
+      _c("div", {
+        staticClass: "progress-bar bg-danger",
+        staticStyle: { width: "75%" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "progress progress-sm" }, [
+      _c("div", {
+        staticClass: "progress-bar bg-success",
+        staticStyle: { width: "60%" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "progress progress-sm" }, [
+      _c("div", {
+        staticClass: "progress-bar bg-warning",
+        staticStyle: { width: "50%" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "text-center" }, [
+      _c("strong", [_vm._v("Kmeans")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "progress progress-sm" }, [
+      _c("div", {
+        staticClass: "progress-bar bg-primary",
+        staticStyle: { width: "80%" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "progress progress-sm" }, [
+      _c("div", {
+        staticClass: "progress-bar bg-danger",
+        staticStyle: { width: "75%" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "progress progress-sm" }, [
+      _c("div", {
+        staticClass: "progress-bar bg-success",
+        staticStyle: { width: "60%" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "progress progress-sm" }, [
+      _c("div", {
+        staticClass: "progress-bar bg-warning",
+        staticStyle: { width: "50%" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h3", { staticClass: "card-title" }, [_vm._v("Filters")]),
       _vm._v(" "),
@@ -73859,6 +74482,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Frequency")]),
         _vm._v(" "),
         _c("th", [_vm._v("Monetary")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("KMeans Score")]),
         _vm._v(" "),
         _c("th", [_vm._v("RFM Score")])
       ])
@@ -90811,11 +91436,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuejs-paginate */ "./node_modules/vuejs-paginate/dist/index.js");
 /* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vuejs_paginate__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var vue_spinner_src_PulseLoader_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-spinner/src/PulseLoader.vue */ "./node_modules/vue-spinner/src/PulseLoader.vue");
-/* harmony import */ var _modules_users__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/users */ "./resources/js/modules/users/index.js");
-/* harmony import */ var _modules_mailing__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/mailing */ "./resources/js/modules/mailing/index.js");
-/* harmony import */ var _modules_statistics__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/statistics */ "./resources/js/modules/statistics/index.js");
-/* harmony import */ var _modules_rfm__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/rfm */ "./resources/js/modules/rfm/index.js");
+/* harmony import */ var vue_clipboard2__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-clipboard2 */ "./node_modules/vue-clipboard2/vue-clipboard.js");
+/* harmony import */ var vue_clipboard2__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_clipboard2__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _modules_users__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/users */ "./resources/js/modules/users/index.js");
+/* harmony import */ var _modules_mailing__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/mailing */ "./resources/js/modules/mailing/index.js");
+/* harmony import */ var _modules_statistics__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/statistics */ "./resources/js/modules/statistics/index.js");
+/* harmony import */ var _modules_rfm__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/rfm */ "./resources/js/modules/rfm/index.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 
 
@@ -90833,7 +91461,8 @@ window.Vue = vue__WEBPACK_IMPORTED_MODULE_0___default.a;
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_toast_notification__WEBPACK_IMPORTED_MODULE_4___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('paginate', vuejs_paginate__WEBPACK_IMPORTED_MODULE_6___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('pulse-loader', vue_spinner_src_PulseLoader_vue__WEBPACK_IMPORTED_MODULE_7__["default"]); // Close all opened toast immediately
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('pulse-loader', vue_spinner_src_PulseLoader_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_clipboard2__WEBPACK_IMPORTED_MODULE_8___default.a); // Close all opened toast immediately
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.clear(); // 3. Update the new Vue intance at the bottom of the file.
 
@@ -91196,36 +91825,479 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     'chartData': {
       handler: function handler(newOption, oldOption) {
-        console.log(this.chartData);
+        console.log('ss', this.chartData);
         this.renderChart({
           datasets: [{
             label: 'Very high',
-            fill: false,
+            fill: '+2',
             borderColor: '#39f507',
             backgroundColor: '#39f507',
-            data: this.chartData[0].v_high
+            data: this.chartData.manual.rm.v_high
           }, {
             label: 'High',
             fill: '+2',
             borderColor: '#0606f6',
             backgroundColor: '#0606f6',
-            data: this.chartData[0].high
+            data: this.chartData.manual.rm.high
           }, {
             label: 'Medium',
             fill: '+2',
             borderColor: '#eff70a',
             backgroundColor: '#eff70a',
-            data: this.chartData[0].medium
+            data: this.chartData.manual.rm.medium
           }, {
             label: 'Low',
-            fill: false,
+            fill: '+2',
             borderColor: '#ff2011',
             backgroundColor: '#ff2011',
-            data: this.chartData[0].low
+            data: this.chartData.manual.rm.low
           }]
         }, {
           responsive: true,
-          maintainAspectRatio: false
+          maintainAspectRatio: false,
+          tooltips: {
+            callbacks: {
+              label: function label(tooltipItem, data) {
+                return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].u;
+              }
+            }
+          },
+          scales: {
+            yAxes: [{
+              ticks: {
+                // Include a dollar sign in the ticks
+                callback: function callback(value, index, values) {
+                  return '$' + value;
+                }
+              }
+            }],
+            xAxes: [{
+              ticks: {
+                // Include a dollar sign in the ticks
+                callback: function callback(value, index, values) {
+                  return value + ' days';
+                }
+              }
+            }]
+          },
+          title: {
+            display: true,
+            text: 'Recency-Monetary Graph'
+          },
+          onClick: function onClick(evt) {
+            var element = this.getElementAtEvent(evt);
+
+            if (element.length > 0) {
+              var datasetIndex = element[0]._datasetIndex;
+              var index = element[0]._index;
+              simplecopy(element[0]._chart.config.data.datasets[datasetIndex].data[index].u);
+              Vue.$toast.open({
+                message: 'Copied to Clipboard',
+                type: 'info',
+                position: 'top-right',
+                duration: 5000
+              });
+            }
+          }
+        });
+      },
+      deep: true
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/modules/rfm/components/RfmScatterMl.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/modules/rfm/components/RfmScatterMl.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Scatter"],
+  mixins: [vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactiveProp],
+  props: ['chartData', 'options'],
+  mounted: function mounted() {
+    this.renderChart({
+      datasets: [{
+        label: 'Scatter Dataset 1',
+        fill: false,
+        borderColor: '#f87979',
+        backgroundColor: '#f87979',
+        data: []
+      }, {
+        label: 'Scatter Dataset 2',
+        fill: false,
+        borderColor: '#7acbf9',
+        backgroundColor: '#7acbf9',
+        data: []
+      }, {
+        label: 'Scatter Dataset 2',
+        fill: false,
+        borderColor: '#7acbf9',
+        backgroundColor: '#7acbf9',
+        data: []
+      }, {
+        label: 'Scatter Dataset 2',
+        fill: false,
+        borderColor: '#7acbf9',
+        backgroundColor: '#7acbf9',
+        data: []
+      }]
+    }, {
+      responsive: true,
+      maintainAspectRatio: false
+    });
+  },
+  watch: {
+    'chartData': {
+      handler: function handler(newOption, oldOption) {
+        console.log(this.chartData);
+        this.renderChart({
+          datasets: [{
+            label: 'First Cluster',
+            fill: '+2',
+            borderColor: '#39f507',
+            backgroundColor: '#39f507',
+            data: this.chartData.ml.rm.first_cluster
+          }, {
+            label: 'Second Cluster',
+            fill: '+2',
+            borderColor: '#0606f6',
+            backgroundColor: '#0606f6',
+            data: this.chartData.ml.rm.second_cluster
+          }, {
+            label: 'Third Cluster',
+            fill: '+2',
+            borderColor: '#eff70a',
+            backgroundColor: '#eff70a',
+            data: this.chartData.ml.rm.third_cluster
+          }, {
+            label: 'Fourth Cluster',
+            fill: '+2',
+            borderColor: '#ff2011',
+            backgroundColor: '#ff2011',
+            data: this.chartData.ml.rm.fourth_cluster
+          }]
+        }, {
+          responsive: true,
+          maintainAspectRatio: false,
+          tooltips: {
+            callbacks: {
+              label: function label(tooltipItem, data) {
+                return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].u;
+              }
+            }
+          },
+          scales: {
+            yAxes: [{
+              ticks: {
+                // Include a dollar sign in the ticks
+                callback: function callback(value, index, values) {
+                  return '$' + value;
+                }
+              }
+            }],
+            xAxes: [{
+              ticks: {
+                // Include a dollar sign in the ticks
+                callback: function callback(value, index, values) {
+                  return value + ' days';
+                }
+              }
+            }]
+          },
+          title: {
+            display: true,
+            text: 'Recency-Monetary Graph'
+          },
+          onClick: function onClick(evt) {
+            var element = this.getElementAtEvent(evt);
+
+            if (element.length > 0) {
+              var datasetIndex = element[0]._datasetIndex;
+              var index = element[0]._index;
+              simplecopy(element[0]._chart.config.data.datasets[datasetIndex].data[index].u);
+              Vue.$toast.open({
+                message: 'Copied to Clipboard',
+                type: 'info',
+                position: 'top-right',
+                duration: 5000
+              });
+            }
+          }
+        });
+      },
+      deep: true
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/modules/rfm/components/RfmScatterMlRf.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/modules/rfm/components/RfmScatterMlRf.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Scatter"],
+  mixins: [vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactiveProp],
+  props: ['chartData', 'options'],
+  mounted: function mounted() {
+    this.renderChart({
+      datasets: [{
+        label: 'Scatter Dataset 1',
+        fill: false,
+        borderColor: '#f87979',
+        backgroundColor: '#f87979',
+        data: []
+      }, {
+        label: 'Scatter Dataset 2',
+        fill: false,
+        borderColor: '#7acbf9',
+        backgroundColor: '#7acbf9',
+        data: []
+      }, {
+        label: 'Scatter Dataset 2',
+        fill: false,
+        borderColor: '#7acbf9',
+        backgroundColor: '#7acbf9',
+        data: []
+      }, {
+        label: 'Scatter Dataset 2',
+        fill: false,
+        borderColor: '#7acbf9',
+        backgroundColor: '#7acbf9',
+        data: []
+      }]
+    }, {
+      responsive: true,
+      maintainAspectRatio: false
+    });
+  },
+  watch: {
+    'chartData': {
+      handler: function handler(newOption, oldOption) {
+        console.log(this.chartData);
+        this.renderChart({
+          datasets: [{
+            label: 'First Cluster',
+            fill: '+2',
+            borderColor: '#39f507',
+            backgroundColor: '#39f507',
+            data: this.chartData.ml.rf.first_cluster
+          }, {
+            label: 'Second Cluster',
+            fill: '+2',
+            borderColor: '#0606f6',
+            backgroundColor: '#0606f6',
+            data: this.chartData.ml.rf.second_cluster
+          }, {
+            label: 'Third Cluster',
+            fill: '+2',
+            borderColor: '#eff70a',
+            backgroundColor: '#eff70a',
+            data: this.chartData.ml.rf.third_cluster
+          }, {
+            label: 'Fourth Cluster',
+            fill: '+2',
+            borderColor: '#ff2011',
+            backgroundColor: '#ff2011',
+            data: this.chartData.ml.rf.fourth_cluster
+          }]
+        }, {
+          responsive: true,
+          maintainAspectRatio: false,
+          tooltips: {
+            callbacks: {
+              label: function label(tooltipItem, data) {
+                return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].u;
+              }
+            }
+          },
+          scales: {
+            yAxes: [{
+              ticks: {
+                // Include a dollar sign in the ticks
+                callback: function callback(value, index, values) {
+                  return value + 'buys';
+                }
+              }
+            }],
+            xAxes: [{
+              ticks: {
+                // Include a dollar sign in the ticks
+                callback: function callback(value, index, values) {
+                  return value + ' days';
+                }
+              }
+            }]
+          },
+          title: {
+            display: true,
+            text: 'Recency-Frequency Graph'
+          },
+          onClick: function onClick(evt) {
+            var element = this.getElementAtEvent(evt);
+
+            if (element.length > 0) {
+              var datasetIndex = element[0]._datasetIndex;
+              var index = element[0]._index;
+              simplecopy(element[0]._chart.config.data.datasets[datasetIndex].data[index].u);
+              Vue.$toast.open({
+                message: 'Copied to Clipboard',
+                type: 'info',
+                position: 'top-right',
+                duration: 5000
+              });
+            }
+          }
+        });
+      },
+      deep: true
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/modules/rfm/components/RfmScatterRf.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/modules/rfm/components/RfmScatterRf.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Scatter"],
+  mixins: [vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactiveProp],
+  props: ['chartData', 'options', 'copy'],
+  mounted: function mounted() {
+    this.renderChart({
+      datasets: [{
+        label: 'Scatter Dataset 1',
+        fill: false,
+        borderColor: '#f87979',
+        backgroundColor: '#f87979',
+        data: []
+      }, {
+        label: 'Scatter Dataset 2',
+        fill: false,
+        borderColor: '#7acbf9',
+        backgroundColor: '#7acbf9',
+        data: []
+      }, {
+        label: 'Scatter Dataset 2',
+        fill: false,
+        borderColor: '#7acbf9',
+        backgroundColor: '#7acbf9',
+        data: []
+      }, {
+        label: 'Scatter Dataset 2',
+        fill: false,
+        borderColor: '#7acbf9',
+        backgroundColor: '#7acbf9',
+        data: []
+      }]
+    }, {
+      responsive: true,
+      maintainAspectRatio: false
+    });
+  },
+  watch: {
+    'chartData': {
+      handler: function handler(newOption, oldOption) {
+        console.log('asdasd', this.chartData);
+        this.renderChart({
+          datasets: [{
+            label: 'Very high',
+            fill: '+2',
+            borderColor: '#39f507',
+            backgroundColor: '#39f507',
+            data: this.chartData.manual.rf.v_high
+          }, {
+            label: 'High',
+            fill: '+2',
+            borderColor: '#0606f6',
+            backgroundColor: '#0606f6',
+            data: this.chartData.manual.rf.high
+          }, {
+            label: 'Medium',
+            fill: '+2',
+            borderColor: '#eff70a',
+            backgroundColor: '#eff70a',
+            data: this.chartData.manual.rf.medium
+          }, {
+            label: 'Low',
+            fill: '+2',
+            borderColor: '#ff2011',
+            backgroundColor: '#ff2011',
+            data: this.chartData.manual.rf.low
+          }]
+        }, {
+          responsive: true,
+          maintainAspectRatio: false,
+          tooltips: {
+            callbacks: {
+              label: function label(tooltipItem, data) {
+                return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].u;
+              }
+            }
+          },
+          scales: {
+            xAxes: [{
+              ticks: {
+                // Include a dollar sign in the ticks
+                callback: function callback(value, index, values) {
+                  return value + ' days';
+                }
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                // Include a dollar sign in the ticks
+                callback: function callback(value, index, values) {
+                  return value + ' buys';
+                }
+              }
+            }]
+          },
+          title: {
+            display: true,
+            text: 'Recency-Frequency Graph'
+          },
+          onClick: function onClick(evt) {
+            var element = this.getElementAtEvent(evt);
+
+            if (element.length > 0) {
+              var datasetIndex = element[0]._datasetIndex;
+              var index = element[0]._index;
+              simplecopy(element[0]._chart.config.data.datasets[datasetIndex].data[index].u);
+              Vue.$toast.open({
+                message: 'Copied to Clipboard',
+                type: 'info',
+                position: 'top-right',
+                duration: 5000
+              });
+            }
+          }
         });
       },
       deep: true
@@ -91419,6 +92491,7 @@ var actions = {
     var commit = _ref2.commit;
     commit('SET_LOADING', true);
     return axios.get('/api/rfm/get').then(function (response) {
+      console.log(response);
       commit('SET_LOADING', false);
       commit('SET_CLASSIFICATIONS', response.data);
       Vue.$toast.open({
@@ -92183,15 +93256,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../store */ "./resources/js/store.js");
 
 var state = {
-  users: [],
-  loading: false
+  users: []
 };
 var getters = {
   getUsers: function getUsers(state) {
     return state.users;
-  },
-  getLoading: function getLoading(state) {
-    return state.loading;
   }
 };
 var mutations = {
@@ -92211,7 +93280,6 @@ var actions = {
         page: payload
       }
     }).then(function (response) {
-      commit('SET_LOADING', false);
       commit('SET_USERS', response.data);
       Vue.$toast.open({
         message: 'Data received successfully',
@@ -92231,7 +93299,6 @@ var actions = {
   },
   uploadData: function uploadData(_ref2, payload) {
     var commit = _ref2.commit;
-    commit('SET_LOADING', true);
     return axios.post('/api/upload/data', payload).then(function (response) {
       commit('SET_LOADING', false);
       Vue.$toast.open({
@@ -92242,7 +93309,6 @@ var actions = {
       });
       return true;
     })["catch"](function (error) {
-      commit('SET_LOADING', false);
       Vue.$toast.open({
         message: error,
         type: 'error',

@@ -2,16 +2,13 @@ import store from './../../store'
 
 const state = {
     users: [],
-    loading: false
 }
 
 const getters = {
     getUsers(state) {
         return state.users
     },
-    getLoading(state) {
-        return state.loading
-    },
+
 }
 
 const mutations = {
@@ -32,7 +29,6 @@ const actions = {
             }
         })
             .then((response) => {
-                commit('SET_LOADING', false)
                 commit('SET_USERS', response.data)
                 Vue.$toast.open({
                     message: 'Data received successfully',
@@ -52,7 +48,6 @@ const actions = {
             })
     },
     uploadData({commit}, payload) {
-        commit('SET_LOADING', true)
         return axios.post('/api/upload/data', payload)
             .then((response) => {
                 commit('SET_LOADING', false)
@@ -66,7 +61,6 @@ const actions = {
                 return true
             })
             .catch((error) => {
-                commit('SET_LOADING', false)
                 Vue.$toast.open({
                     message: error,
                     type: 'error',
