@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helper\Status;
 use App\Http\Controllers\Controller;
 use App\Jobs\CalculateRfmJob;
 use App\Models\RFM;
@@ -28,6 +29,10 @@ class RfmController extends Controller
 
         if(!isset($data)) {
             return response([]);
+        }
+
+        if($data->status == Status::PROCESSING) {
+            return response(['status' => Status::PROCESSING]);
         }
         $manual = json_decode($data->data);
         $ml     = json_decode($data->ml);

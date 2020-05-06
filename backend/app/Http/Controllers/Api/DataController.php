@@ -69,8 +69,8 @@ class DataController extends Controller
         if($request->get('email')) {
            $data = $data->where('email', $request->get('email'));
         }
-        if($request->get('rfm')) {
-            $data = $data->where('score', $request->get('rfm'));
+        if($request->get('csv')) {
+            $data = $data->where('score', $request->get('csv'));
         }
         if(count($data) == 0) {
             return response('no file', 200, [
@@ -85,7 +85,7 @@ class DataController extends Controller
             $csv->insertOne($line->toArray());
         }
 
-        return response((string) $csv->output('people.csv'), 200, [
+        return response((string) $csv->output('users.csv'), 200, [
             'Content-Type' => 'text/csv',
             'Content-Transfer-Encoding' => 'binary',
             'Content-Disposition' => 'attachment; filename="people.csv"',
