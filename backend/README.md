@@ -29,11 +29,11 @@ Also, you need up database, and build config.
 ```
  * [x] Authorization
  * [x] Registration
- * [ ] Data storing
- * [ ] Statistics of all data
- * [ ] CRM targeting(Wait for Nazhmeddin)
- * [ ] Download result(Wait for Nazhmeddin)
- * [ ] Mailing
+ * [X] Data storing
+ * [X] Statistics of all data
+ * [X] CRM targeting
+ * [X] Download result
+ * [X] Mailing
 ```
 
 
