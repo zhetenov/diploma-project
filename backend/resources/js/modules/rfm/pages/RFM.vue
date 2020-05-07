@@ -91,7 +91,8 @@
                                                 Very high
                                                 <span class="float-right"><b>{{classifications.stat ? classifications.stat.manual.vh : 0 }}</b>/{{ classifications.stat ?  classifications.stat.manual.amount : 0}}</span>
                                                 <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-primary" style="width: 80%"></div>
+                                                    <div class="progress-bar bg-success" v-if="classifications.stat" :style="'width:' + (classifications.stat.manual.vh * 100) / classifications.stat.manual.amount +'%'"></div>
+                                                    <div class="progress-bar bg-success" v-else :style="'width: 0%'"></div>
                                                 </div>
                                             </div>
                                             <!-- /.progress-group -->
@@ -100,16 +101,18 @@
                                                 High
                                                 <span class="float-right"><b>{{classifications.stat ? classifications.stat.manual.h : 0 }}</b>/{{ classifications.stat ? classifications.stat.manual.amount : 0 }}</span>
                                                 <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-danger" style="width: 75%"></div>
+                                                    <div class="progress-bar bg-primary" v-if="classifications.stat" :style="'width:' + (classifications.stat.manual.h * 100) / classifications.stat.manual.amount +'%'"></div>
+                                                    <div class="progress-bar bg-primary" v-else :style="'width:0%'"></div>
                                                 </div>
                                             </div>
 
                                             <!-- /.progress-group -->
                                             <div class="progress-group">
-                                                <span class="progress-text">Mediym</span>
+                                                <span class="progress-text">Medium</span>
                                                 <span class="float-right"><b>{{classifications.stat ? classifications.stat.manual.m : 0 }}</b>/{{classifications.stat ? classifications.stat.manual.amount : 0 }}</span>
                                                 <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-success" style="width: 60%"></div>
+                                                    <div class="progress-bar bg-warning"   v-if="classifications.stat" :style="'width:' + (classifications.stat.manual.m * 100) / classifications.stat.manual.amount +'%'"></div>
+                                                    <div class="progress-bar bg-warning" v-else :style="'width:0%'"></div>
                                                 </div>
                                             </div>
 
@@ -118,7 +121,8 @@
                                                 Low
                                                 <span class="float-right"><b>{{classifications.stat ? classifications.stat.manual.l: 0 }}</b>/{{classifications.stat ? classifications.stat.manual.amount:0 }}</span>
                                                 <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-warning" style="width: 50%"></div>
+                                                    <div class="progress-bar bg-danger"  v-if="classifications.stat" :style="'width:' + (classifications.stat.manual.l * 100) / classifications.stat.manual.amount +'%'"></div>
+                                                    <div class="progress-bar bg-danger" v-else :style="'width:0%'"></div>
                                                 </div>
                                             </div>
                                             <!-- /.progress-group -->
@@ -133,7 +137,8 @@
                                                 First Cluster
                                                 <span class="float-right"><b>{{classifications.stat ? classifications.stat.ml.vh:0 }}</b>/{{classifications.stat ? classifications.stat.manual.amount:0 }}</span>
                                                 <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-primary" style="width: 80%"></div>
+                                                    <div class="progress-bar bg-success"   v-if="classifications.stat" :style="'width:' + (classifications.stat.ml.vh * 100) / classifications.stat.manual.amount +'%'"></div>
+                                                    <div class="progress-bar bg-success" v-else  :style="'width:0%'"></div>
                                                 </div>
                                             </div>
                                             <!-- /.progress-group -->
@@ -142,7 +147,8 @@
                                                 Second Cluster
                                                 <span class="float-right"><b>{{classifications.stat ? classifications.stat.ml.h:0 }}</b>/{{classifications.stat ? classifications.stat.manual.amount:0 }}</span>
                                                 <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-danger" style="width: 75%"></div>
+                                                    <div class="progress-bar bg-primary"  v-if="classifications.stat" :style="'width:' + (classifications.stat.ml.h * 100) / classifications.stat.manual.amount +'%'"></div>
+                                                    <div class="progress-bar bg-primary" v-else :style="'width:0%'"></div>
                                                 </div>
                                             </div>
 
@@ -151,16 +157,18 @@
                                                 <span class="progress-text">Third Cluster</span>
                                                 <span class="float-right"><b>{{classifications.stat ? classifications.stat.ml.m: 0 }}</b>/{{classifications.stat ? classifications.stat.manual.amount:0 }}</span>
                                                 <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-success" style="width: 60%"></div>
+                                                    <div class="progress-bar bg-warning" v-if="classifications.stat"  :style="'width:' + (classifications.stat.ml.m * 100) / classifications.stat.manual.amount +'%'"></div>
+                                                    <div class="progress-bar bg-warning" v-else :style="'width: 0%'"></div>
                                                 </div>
                                             </div>
 
                                             <!-- /.progress-group -->
                                             <div class="progress-group">
                                                 Fourth Cluster
-                                                <span class="float-right"><b>{{classifications.stat ? classifications.stat.manual.l:0 }}</b>/{{classifications.stat ? classifications.stat.manual.amount:0 }}</span>
+                                                <span class="float-right"><b>{{classifications.stat ? classifications.stat.ml.l:0 }}</b>/{{classifications.stat ? classifications.stat.manual.amount:0 }}</span>
                                                 <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-warning" style="width: 50%"></div>
+                                                    <div v-if="classifications.stat" class="progress-bar bg-danger"  :style="'width:' + (classifications.stat.ml.l * 100) / classifications.stat.manual.amount +'%'"></div>
+                                                    <div v-else class="progress-bar bg-danger"  :style="'width: 0%'"></div>
                                                 </div>
                                             </div>
                                             <!-- /.progress-group -->
@@ -215,7 +223,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">User Classification</h3>
                                 <div class="card-tools">
-                                    <a :href="`/api/users/without/graph/file?csv=${filteredRfmScore ? filteredRfmScore : ''}&name=${filteredName ? filteredName: ''}&email=${filteredEmail ? filteredEmail : ''}`"><button class="btn btn-block btn-outline-info btn-flat">
+                                    <a :href="`/api/users/without/graph/file?rfm=${filteredRfmScore ? filteredRfmScore : ''}&name=${filteredName ? filteredName: ''}&email=${filteredEmail ? filteredEmail : ''}`"><button class="btn btn-block btn-outline-info btn-flat">
                                         <i class="fas fa-save"></i> Download
                                     </button>
                                     </a>
@@ -333,13 +341,6 @@
             filter() {
                 this.$store.dispatch('fetchUsersWithoutGraph', {
                     page:1,
-                    rfm: this.filteredRfmScore,
-                    name: this.filteredName,
-                    email: this.filteredEmail,
-                })
-            },
-            download() {
-                this.$store.dispatch('fetchUsersWithoutGraphFile', {
                     rfm: this.filteredRfmScore,
                     name: this.filteredName,
                     email: this.filteredEmail,
