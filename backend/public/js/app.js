@@ -2399,6 +2399,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2460,13 +2468,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     filter: function filter() {
       this.$store.dispatch('fetchUsersWithoutGraph', {
         page: 1,
-        rfm: this.filteredRfmScore,
-        name: this.filteredName,
-        email: this.filteredEmail
-      });
-    },
-    download: function download() {
-      this.$store.dispatch('fetchUsersWithoutGraphFile', {
         rfm: this.filteredRfmScore,
         name: this.filteredName,
         email: this.filteredEmail
@@ -73953,7 +73954,21 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(4)
+                        _c("div", { staticClass: "progress progress-sm" }, [
+                          _vm.classifications.stat
+                            ? _c("div", {
+                                staticClass: "progress-bar bg-success",
+                                style:
+                                  "width:" +
+                                  (_vm.classifications.stat.manual.vh * 100) /
+                                    _vm.classifications.stat.manual.amount +
+                                  "%"
+                              })
+                            : _c("div", {
+                                staticClass: "progress-bar bg-success",
+                                style: "width: 0%"
+                              })
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "progress-group" }, [
@@ -73980,12 +73995,26 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(5)
+                        _c("div", { staticClass: "progress progress-sm" }, [
+                          _vm.classifications.stat
+                            ? _c("div", {
+                                staticClass: "progress-bar bg-primary",
+                                style:
+                                  "width:" +
+                                  (_vm.classifications.stat.manual.h * 100) /
+                                    _vm.classifications.stat.manual.amount +
+                                  "%"
+                              })
+                            : _c("div", {
+                                staticClass: "progress-bar bg-primary",
+                                style: "width:0%"
+                              })
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "progress-group" }, [
                         _c("span", { staticClass: "progress-text" }, [
-                          _vm._v("Mediym")
+                          _vm._v("Medium")
                         ]),
                         _vm._v(" "),
                         _c("span", { staticClass: "float-right" }, [
@@ -74008,7 +74037,21 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(6)
+                        _c("div", { staticClass: "progress progress-sm" }, [
+                          _vm.classifications.stat
+                            ? _c("div", {
+                                staticClass: "progress-bar bg-warning",
+                                style:
+                                  "width:" +
+                                  (_vm.classifications.stat.manual.m * 100) /
+                                    _vm.classifications.stat.manual.amount +
+                                  "%"
+                              })
+                            : _c("div", {
+                                staticClass: "progress-bar bg-warning",
+                                style: "width:0%"
+                              })
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "progress-group" }, [
@@ -74035,14 +74078,28 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(7)
+                        _c("div", { staticClass: "progress progress-sm" }, [
+                          _vm.classifications.stat
+                            ? _c("div", {
+                                staticClass: "progress-bar bg-danger",
+                                style:
+                                  "width:" +
+                                  (_vm.classifications.stat.manual.l * 100) /
+                                    _vm.classifications.stat.manual.amount +
+                                  "%"
+                              })
+                            : _c("div", {
+                                staticClass: "progress-bar bg-danger",
+                                style: "width:0%"
+                              })
+                        ])
                       ])
                     ]),
                     _vm._v(" "),
                     _c("br"),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-12" }, [
-                      _vm._m(8),
+                      _vm._m(4),
                       _vm._v(" "),
                       _c("div", { staticClass: "progress-group" }, [
                         _vm._v(
@@ -74068,7 +74125,21 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(9)
+                        _c("div", { staticClass: "progress progress-sm" }, [
+                          _vm.classifications.stat
+                            ? _c("div", {
+                                staticClass: "progress-bar bg-success",
+                                style:
+                                  "width:" +
+                                  (_vm.classifications.stat.ml.vh * 100) /
+                                    _vm.classifications.stat.manual.amount +
+                                  "%"
+                              })
+                            : _c("div", {
+                                staticClass: "progress-bar bg-success",
+                                style: "width:0%"
+                              })
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "progress-group" }, [
@@ -74095,7 +74166,21 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(10)
+                        _c("div", { staticClass: "progress progress-sm" }, [
+                          _vm.classifications.stat
+                            ? _c("div", {
+                                staticClass: "progress-bar bg-primary",
+                                style:
+                                  "width:" +
+                                  (_vm.classifications.stat.ml.h * 100) /
+                                    _vm.classifications.stat.manual.amount +
+                                  "%"
+                              })
+                            : _c("div", {
+                                staticClass: "progress-bar bg-primary",
+                                style: "width:0%"
+                              })
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "progress-group" }, [
@@ -74123,7 +74208,21 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(11)
+                        _c("div", { staticClass: "progress progress-sm" }, [
+                          _vm.classifications.stat
+                            ? _c("div", {
+                                staticClass: "progress-bar bg-warning",
+                                style:
+                                  "width:" +
+                                  (_vm.classifications.stat.ml.m * 100) /
+                                    _vm.classifications.stat.manual.amount +
+                                  "%"
+                              })
+                            : _c("div", {
+                                staticClass: "progress-bar bg-warning",
+                                style: "width: 0%"
+                              })
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "progress-group" }, [
@@ -74135,7 +74234,7 @@ var render = function() {
                             _vm._v(
                               _vm._s(
                                 _vm.classifications.stat
-                                  ? _vm.classifications.stat.manual.l
+                                  ? _vm.classifications.stat.ml.l
                                   : 0
                               )
                             )
@@ -74150,7 +74249,21 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(12)
+                        _c("div", { staticClass: "progress progress-sm" }, [
+                          _vm.classifications.stat
+                            ? _c("div", {
+                                staticClass: "progress-bar bg-danger",
+                                style:
+                                  "width:" +
+                                  (_vm.classifications.stat.ml.l * 100) /
+                                    _vm.classifications.stat.manual.amount +
+                                  "%"
+                              })
+                            : _c("div", {
+                                staticClass: "progress-bar bg-danger",
+                                style: "width: 0%"
+                              })
+                        ])
                       ])
                     ])
                   ])
@@ -74163,7 +74276,7 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "card card-outline collapsed-card" }, [
-              _vm._m(13),
+              _vm._m(5),
               _vm._v(" "),
               _c(
                 "div",
@@ -74287,7 +74400,7 @@ var render = function() {
                     {
                       attrs: {
                         href:
-                          "/api/users/without/graph/file?csv=" +
+                          "/api/users/without/graph/file?rfm=" +
                           (_vm.filteredRfmScore ? _vm.filteredRfmScore : "") +
                           "&name=" +
                           (_vm.filteredName ? _vm.filteredName : "") +
@@ -74295,14 +74408,14 @@ var render = function() {
                           (_vm.filteredEmail ? _vm.filteredEmail : "")
                       }
                     },
-                    [_vm._m(14)]
+                    [_vm._m(6)]
                   )
                 ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
                 _c("table", { staticClass: "table table-bordered" }, [
-                  _vm._m(15),
+                  _vm._m(7),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -74468,96 +74581,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress progress-sm" }, [
-      _c("div", {
-        staticClass: "progress-bar bg-primary",
-        staticStyle: { width: "80%" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress progress-sm" }, [
-      _c("div", {
-        staticClass: "progress-bar bg-danger",
-        staticStyle: { width: "75%" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress progress-sm" }, [
-      _c("div", {
-        staticClass: "progress-bar bg-success",
-        staticStyle: { width: "60%" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress progress-sm" }, [
-      _c("div", {
-        staticClass: "progress-bar bg-warning",
-        staticStyle: { width: "50%" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("p", { staticClass: "text-center" }, [
       _c("strong", [_vm._v("Kmeans")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress progress-sm" }, [
-      _c("div", {
-        staticClass: "progress-bar bg-primary",
-        staticStyle: { width: "80%" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress progress-sm" }, [
-      _c("div", {
-        staticClass: "progress-bar bg-danger",
-        staticStyle: { width: "75%" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress progress-sm" }, [
-      _c("div", {
-        staticClass: "progress-bar bg-success",
-        staticStyle: { width: "60%" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress progress-sm" }, [
-      _c("div", {
-        staticClass: "progress-bar bg-warning",
-        staticStyle: { width: "50%" }
-      })
     ])
   },
   function() {
@@ -74812,7 +74837,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "info-box-icon bg-warning elevation-1" }, [
-      _c("i", { staticClass: "fas fa-users" })
+      _c("i", { staticClass: "fas fa-user", staticStyle: { color: "#fff" } })
     ])
   }
 ]
@@ -92673,8 +92698,7 @@ var actions = {
     var _payload$name2, _payload$email2, _payload$rfm2;
 
     var commit = _ref4.commit;
-    commit('SET_LOADING', true);
-    return axios('/api/users/without/graph/file', {
+    return axios.get('/api/users/without/graph/file', {
       params: {
         page: payload.page,
         name: (_payload$name2 = payload.name) !== null && _payload$name2 !== void 0 ? _payload$name2 : null,

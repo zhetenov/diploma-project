@@ -101,8 +101,7 @@ const actions = {
             })
     },
     fetchUsersWithoutGraphFile({commit}, payload) {
-        commit('SET_LOADING', true)
-        return axios('/api/users/without/graph/file', {
+        return axios.get('/api/users/without/graph/file', {
             params: {
                 page: payload.page,
                 name: payload.name ?? null,
