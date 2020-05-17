@@ -1,0 +1,21 @@
+
+name: CRM-Box-CI
+
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+#     - uses: actions/checkout@v2
+    - name: Print Hello World
+      run: echo Hello, world!
+
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Hello from deploy
+        run: echo Salem, alem!
