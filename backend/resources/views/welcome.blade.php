@@ -5,6 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>CRM Box</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="author" content=""/>
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content=""/>
+    <meta name="twitter:image" content=""/>
+    <meta name="twitter:url" content=""/>
+    <meta name="twitter:card" content=""/>
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400" rel="stylesheet">
@@ -93,25 +107,10 @@
             <div class="row animate-box">
                 <div class="featured-wrap">
                     <div class="owl-carousel">
-                        <div class="item">
-                            <div class="col-md-8 col-md-offset-2">
-                                <div class="featured-entry">
-                                    <img class="img-responsive" src="front/images/users.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="col-md-8 col-md-offset-2">
-                                <div class="featured-entry">
-                                    <img class="img-responsive" src="front/images/statistics.png" alt="">
-
-                                </div>
-                            </div>
-                        </div>
                          <div class="item">
                             <div class="col-md-8 col-md-offset-2">
                                 <div class="featured-entry">
-                                    <img class="img-responsive" src="front/images/rfm%20analyze.png" alt="">
+                                    <img class="img-responsive" src="front/images/crm_image.png" alt="">
 
                                 </div>
                             </div>
@@ -119,7 +118,22 @@
                         <div class="item">
                             <div class="col-md-8 col-md-offset-2">
                                 <div class="featured-entry">
-                                    <img class="img-responsive" src="front/images/mailing.png" alt="">
+                                    <img class="img-responsive" src="front/images/image0.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="featured-entry">
+                                    <img class="img-responsive" src="front/images/image1.png" alt="">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="featured-entry">
+                                    <img class="img-responsive" src="front/images/image2.png" alt="">
 
                                 </div>
                             </div>
@@ -159,8 +173,7 @@
 								<i class="material-icons"><img class="img-responsive" src="front/images/Vector2.png"></i>
 							</span>
                         <div class="desc">
-                            <p>Perform mailing right through service. Segmented customers list will leave you just to
-                                use right words on right time!</p>
+                            <p>Perform mailing right through service. Segmented customers list will leave you just to right words on right time!</p>
                         </div>
                     </div>
                 </div>
@@ -230,7 +243,7 @@
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1 text-center colorlib-heading animate-box">
                                 <h2>CRM Box mailing</h2>
-                                <p>If you don't have your own domain. We also provide you with our mailing system. This one
+                                <p>If you dont have your own domain. We also provide you with our mailing system. This one
                                     is dedicated to work with large amount of data.</p>
                             </div>
                         </div>
@@ -287,7 +300,7 @@
                 <div class="col-md-3 colorlib-widget">
                     <h4>About CRM Box</h4>
                     <p>СRM-box will help you to improve your customer relations. And adjust your sales statistics. You
-                        can also use our mailig system to deliver special offer to all of your customers</p>
+                        can also    our mailig system to deliver special offer to all of your customers</p>
                     <p>
                     <ul class="colorlib-social-icons">
                         <li><a href="#"><i class="icon-linkedin"></i></a></li>
@@ -310,7 +323,7 @@
                     <h4>Contact Info</h4>
                     <ul class="colorlib-footer-links">
                         <li>Abylaykhana Street 1, <br> Qarasay, Kaskelen</li>
-                        <li><a href="tel://1234567920"><i class="icon-phone"></i> +7 778 728 42 34 </a></li>
+                        <li><a href="https://t.me/tunuke"><i class="icon-phone"></i> +7 778 728 42 34 </a></li>
                         <li><a href="mailto:info@yoursite.com"><i class="icon-envelope"></i> crm@info.com</a></li>
                         <li><a href="#"><i class="icon-location4"></i> crmbox.com</a></li>
                     </ul>
