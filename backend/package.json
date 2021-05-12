@@ -27,7 +27,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
     "admin-lte": "^3.0",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "vue-chartjs": "^3.5.0",
     "vue-clipboard2": "^0.3.1",
     "vue-toast-notification": "^0.1.0",
